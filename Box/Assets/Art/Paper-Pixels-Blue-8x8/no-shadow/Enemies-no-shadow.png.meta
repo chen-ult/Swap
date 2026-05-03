@@ -1,0 +1,3419 @@
+fileFormatVersion: 2
+guid: f33cd50975e61694db1cb1e509649cd1
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7299337719647107362
+    second: Enemies-no-shadow_0
+  - first:
+      213: 8101082181969984612
+    second: Enemies-no-shadow_1
+  - first:
+      213: -5813821706574751018
+    second: Enemies-no-shadow_2
+  - first:
+      213: 3702969444655200991
+    second: Enemies-no-shadow_3
+  - first:
+      213: -7981301054809573528
+    second: Enemies-no-shadow_4
+  - first:
+      213: 6813240821204222888
+    second: Enemies-no-shadow_5
+  - first:
+      213: -4748474247088817138
+    second: Enemies-no-shadow_6
+  - first:
+      213: -4458063842228037306
+    second: Enemies-no-shadow_7
+  - first:
+      213: 3899864666523940246
+    second: Enemies-no-shadow_8
+  - first:
+      213: -1627259812619696592
+    second: Enemies-no-shadow_9
+  - first:
+      213: -4835259876748532053
+    second: Enemies-no-shadow_10
+  - first:
+      213: 6544732543284624428
+    second: Enemies-no-shadow_11
+  - first:
+      213: -2360319791942042371
+    second: Enemies-no-shadow_12
+  - first:
+      213: -3562781061421553333
+    second: Enemies-no-shadow_13
+  - first:
+      213: 3016308287446969293
+    second: Enemies-no-shadow_14
+  - first:
+      213: 3084254347585448071
+    second: Enemies-no-shadow_15
+  - first:
+      213: 6733243280634972144
+    second: Enemies-no-shadow_16
+  - first:
+      213: -5346095270127892668
+    second: Enemies-no-shadow_17
+  - first:
+      213: -2478701616439070446
+    second: Enemies-no-shadow_18
+  - first:
+      213: 1856111908830995446
+    second: Enemies-no-shadow_19
+  - first:
+      213: 7334470874879645692
+    second: Enemies-no-shadow_20
+  - first:
+      213: -6191539765046870401
+    second: Enemies-no-shadow_21
+  - first:
+      213: -1156515005028933393
+    second: Enemies-no-shadow_22
+  - first:
+      213: -4026757964481179700
+    second: Enemies-no-shadow_23
+  - first:
+      213: 2672562095495076579
+    second: Enemies-no-shadow_24
+  - first:
+      213: -8452947743588874035
+    second: Enemies-no-shadow_25
+  - first:
+      213: -6662478508366160580
+    second: Enemies-no-shadow_26
+  - first:
+      213: -7914407321557192316
+    second: Enemies-no-shadow_27
+  - first:
+      213: 7027576155061652323
+    second: Enemies-no-shadow_28
+  - first:
+      213: -5071341204702802224
+    second: Enemies-no-shadow_29
+  - first:
+      213: -102613878120446530
+    second: Enemies-no-shadow_30
+  - first:
+      213: -3689507422397707749
+    second: Enemies-no-shadow_31
+  - first:
+      213: 1406721932012358614
+    second: Enemies-no-shadow_32
+  - first:
+      213: 5224027178576213999
+    second: Enemies-no-shadow_33
+  - first:
+      213: -923352571887228148
+    second: Enemies-no-shadow_34
+  - first:
+      213: -3711367008658945702
+    second: Enemies-no-shadow_35
+  - first:
+      213: -5942434895257699972
+    second: Enemies-no-shadow_36
+  - first:
+      213: 8637549980609418400
+    second: Enemies-no-shadow_37
+  - first:
+      213: 3765738978213546332
+    second: Enemies-no-shadow_38
+  - first:
+      213: 8647385849999813606
+    second: Enemies-no-shadow_39
+  - first:
+      213: 2457547688607904219
+    second: Enemies-no-shadow_40
+  - first:
+      213: 4029116240464691008
+    second: Enemies-no-shadow_41
+  - first:
+      213: 6605734948669162442
+    second: Enemies-no-shadow_42
+  - first:
+      213: 4130706312285738086
+    second: Enemies-no-shadow_43
+  - first:
+      213: 2181459617216113022
+    second: Enemies-no-shadow_44
+  - first:
+      213: -6569801342256542295
+    second: Enemies-no-shadow_45
+  - first:
+      213: 7552298418036814776
+    second: Enemies-no-shadow_46
+  - first:
+      213: 7873893482199572714
+    second: Enemies-no-shadow_47
+  - first:
+      213: 664532727060339853
+    second: Enemies-no-shadow_48
+  - first:
+      213: -3596498237027041495
+    second: Enemies-no-shadow_49
+  - first:
+      213: -133225656994088030
+    second: Enemies-no-shadow_50
+  - first:
+      213: 5951970848427610289
+    second: Enemies-no-shadow_51
+  - first:
+      213: -6575879804346291127
+    second: Enemies-no-shadow_52
+  - first:
+      213: 2165863165028416568
+    second: Enemies-no-shadow_53
+  - first:
+      213: -6586863097315945179
+    second: Enemies-no-shadow_54
+  - first:
+      213: -5852837738327663146
+    second: Enemies-no-shadow_55
+  - first:
+      213: -2545189579116366649
+    second: Enemies-no-shadow_56
+  - first:
+      213: -7718152992512196681
+    second: Enemies-no-shadow_57
+  - first:
+      213: -884710437107960604
+    second: Enemies-no-shadow_58
+  - first:
+      213: 5334255353007559555
+    second: Enemies-no-shadow_59
+  - first:
+      213: -8031969663877549397
+    second: Enemies-no-shadow_60
+  - first:
+      213: -3452138319272686373
+    second: Enemies-no-shadow_61
+  - first:
+      213: 2935214855010631194
+    second: Enemies-no-shadow_62
+  - first:
+      213: 1094316713294931679
+    second: Enemies-no-shadow_63
+  - first:
+      213: 6868795145624317336
+    second: Enemies-no-shadow_64
+  - first:
+      213: -3768608235552348005
+    second: Enemies-no-shadow_65
+  - first:
+      213: 2721357518823725247
+    second: Enemies-no-shadow_66
+  - first:
+      213: 4899500033216558903
+    second: Enemies-no-shadow_67
+  - first:
+      213: 1702174717552958159
+    second: Enemies-no-shadow_68
+  - first:
+      213: 6320820742670951733
+    second: Enemies-no-shadow_69
+  - first:
+      213: 2688867981040658312
+    second: Enemies-no-shadow_70
+  - first:
+      213: -1307872881298321901
+    second: Enemies-no-shadow_71
+  - first:
+      213: -2978653943588726605
+    second: Enemies-no-shadow_72
+  - first:
+      213: -3171572047640322665
+    second: Enemies-no-shadow_73
+  - first:
+      213: 7350073490009266303
+    second: Enemies-no-shadow_74
+  - first:
+      213: 467754218667648935
+    second: Enemies-no-shadow_75
+  - first:
+      213: 1756551208732235577
+    second: Enemies-no-shadow_76
+  - first:
+      213: 8531589612948980319
+    second: Enemies-no-shadow_77
+  - first:
+      213: 500440108790484468
+    second: Enemies-no-shadow_78
+  - first:
+      213: 3408930238917798268
+    second: Enemies-no-shadow_79
+  - first:
+      213: 8374171049354667125
+    second: Enemies-no-shadow_80
+  - first:
+      213: 3028134286436695541
+    second: Enemies-no-shadow_81
+  - first:
+      213: -7937100437309029171
+    second: Enemies-no-shadow_82
+  - first:
+      213: -7485213438098161597
+    second: Enemies-no-shadow_83
+  - first:
+      213: 8236212448575849653
+    second: Enemies-no-shadow_84
+  - first:
+      213: 372003430657190839
+    second: Enemies-no-shadow_85
+  - first:
+      213: -8654381136077811002
+    second: Enemies-no-shadow_86
+  - first:
+      213: 506694285280529142
+    second: Enemies-no-shadow_87
+  - first:
+      213: -4192871410596005130
+    second: Enemies-no-shadow_88
+  - first:
+      213: 8552003750160897169
+    second: Enemies-no-shadow_89
+  - first:
+      213: -3988773647958304689
+    second: Enemies-no-shadow_90
+  - first:
+      213: 2569110260678267737
+    second: Enemies-no-shadow_91
+  - first:
+      213: 8962027299604685843
+    second: Enemies-no-shadow_92
+  - first:
+      213: -1313761756417612272
+    second: Enemies-no-shadow_93
+  - first:
+      213: 5804050129038036773
+    second: Enemies-no-shadow_94
+  - first:
+      213: -7514236906392564386
+    second: Enemies-no-shadow_95
+  - first:
+      213: 2775917463890638518
+    second: Enemies-no-shadow_96
+  - first:
+      213: -106489153757861417
+    second: Enemies-no-shadow_97
+  - first:
+      213: -833162403129227233
+    second: Enemies-no-shadow_98
+  - first:
+      213: -5990033419777031657
+    second: Enemies-no-shadow_99
+  - first:
+      213: -705907519548473315
+    second: Enemies-no-shadow_100
+  - first:
+      213: 1670845137509096523
+    second: Enemies-no-shadow_101
+  - first:
+      213: 7607783108491380698
+    second: Enemies-no-shadow_102
+  - first:
+      213: -5254842057865551992
+    second: Enemies-no-shadow_103
+  - first:
+      213: -6297342374573753284
+    second: Enemies-no-shadow_104
+  - first:
+      213: -5714684611370394256
+    second: Enemies-no-shadow_105
+  - first:
+      213: -5154888735668552361
+    second: Enemies-no-shadow_106
+  - first:
+      213: -6205135023678397238
+    second: Enemies-no-shadow_107
+  - first:
+      213: -4495836291061374845
+    second: Enemies-no-shadow_108
+  - first:
+      213: -1502929896888401114
+    second: Enemies-no-shadow_109
+  - first:
+      213: -9044403982551071055
+    second: Enemies-no-shadow_110
+  - first:
+      213: -1555413196625319879
+    second: Enemies-no-shadow_111
+  - first:
+      213: 8756062852039083913
+    second: Enemies-no-shadow_112
+  - first:
+      213: -7639756097803326891
+    second: Enemies-no-shadow_113
+  - first:
+      213: -8190272302855040173
+    second: Enemies-no-shadow_114
+  - first:
+      213: 8139392560711383737
+    second: Enemies-no-shadow_115
+  - first:
+      213: -5948406813066380797
+    second: Enemies-no-shadow_116
+  - first:
+      213: -5320487880656087103
+    second: Enemies-no-shadow_117
+  - first:
+      213: -7449394820076462715
+    second: Enemies-no-shadow_118
+  - first:
+      213: -2825338019014814496
+    second: Enemies-no-shadow_119
+  - first:
+      213: -136658081961272802
+    second: Enemies-no-shadow_120
+  - first:
+      213: 6267295090519335210
+    second: Enemies-no-shadow_121
+  - first:
+      213: 48772232022627676
+    second: Enemies-no-shadow_122
+  - first:
+      213: 7517675157610409222
+    second: Enemies-no-shadow_123
+  - first:
+      213: -685674935414938094
+    second: Enemies-no-shadow_124
+  - first:
+      213: -3053887704232268206
+    second: Enemies-no-shadow_125
+  - first:
+      213: 5595726893895245312
+    second: Enemies-no-shadow_126
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Enemies-no-shadow_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 103
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 229fc238bf47c4560800000000000000
+      internalID: 7299337719647107362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_1
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 103
+        width: 14
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46c3198b253dc6070800000000000000
+      internalID: 8101082181969984612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_2
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 103
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6da1828f5f7215fa0800000000000000
+      internalID: -5813821706574751018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_3
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 103
+        width: 22
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fda7cca3717936330800000000000000
+      internalID: 3702969444655200991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_4
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 103
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 867ff963af8bc3190800000000000000
+      internalID: -7981301054809573528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_5
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 103
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a38115cd6e7d8e50800000000000000
+      internalID: 6813240821204222888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_6
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 103
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0c3e2da4d70a1eb0800000000000000
+      internalID: -4748474247088817138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_7
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 103
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6491cf92e86c122c0800000000000000
+      internalID: -4458063842228037306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_8
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 103
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 695b148704a1f1630800000000000000
+      internalID: 3899864666523940246
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_9
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 103
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 036c88f62dfca69e0800000000000000
+      internalID: -1627259812619696592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_10
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 103
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba664b9a2c4b5ecb0800000000000000
+      internalID: -4835259876748532053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_11
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 101
+        width: 14
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2c3b68929f83da50800000000000000
+      internalID: 6544732543284624428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_12
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 103
+        width: 15
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dfc78fc97a57e3fd0800000000000000
+      internalID: -2360319791942042371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_13
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 101
+        width: 21
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b49aa7540857e8ec0800000000000000
+      internalID: -3562781061421553333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_14
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 103
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dcbe75608641cd920800000000000000
+      internalID: 3016308287446969293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_15
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 103
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 788e8c0fcf87dca20800000000000000
+      internalID: 3084254347585448071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 79
+        width: 23
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f78888e619417d50800000000000000
+      internalID: 6733243280634972144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_17
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 88
+        width: 16
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44781a83daadec5b0800000000000000
+      internalID: -5346095270127892668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_18
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 89
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21176f73302e99dd0800000000000000
+      internalID: -2478701616439070446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_19
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 88
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f36e3d62fb32c910800000000000000
+      internalID: 1856111908830995446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_20
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 87
+        width: 16
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf756a8a66649c560800000000000000
+      internalID: 7334470874879645692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_21
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 87
+        width: 16
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7efcab436b331aa0800000000000000
+      internalID: -6191539765046870401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_22
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 87
+        width: 16
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe067dbfabb33ffe0800000000000000
+      internalID: -1156515005028933393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_23
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 87
+        width: 16
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ccfcf9a47f41e18c0800000000000000
+      internalID: -4026757964481179700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_24
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 79
+        width: 24
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ea5826e019d61520800000000000000
+      internalID: 2672562095495076579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_25
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 79
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc8027610d811ba80800000000000000
+      internalID: -8452947743588874035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_26
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 71
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3d1921981f1a83a0800000000000000
+      internalID: -6662478508366160580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_27
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 79
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48135de29706a2290800000000000000
+      internalID: -7914407321557192316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_28
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 71
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36b84728747f68160800000000000000
+      internalID: 7027576155061652323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_29
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 79
+        width: 16
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0de43ee1b0afe99b0800000000000000
+      internalID: -5071341204702802224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_30
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 79
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb50b95b831739ef0800000000000000
+      internalID: -102613878120446530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_31
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 63
+        width: 8
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1a41d31c8c3cccc0800000000000000
+      internalID: -3689507422397707749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_32
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 79
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6db095fd42ea58310800000000000000
+      internalID: 1406721932012358614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_33
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 71
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe775047a097f7840800000000000000
+      internalID: 5224027178576213999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_34
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 79
+        width: 16
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0be73e5ab79f23f0800000000000000
+      internalID: -923352571887228148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_35
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 79
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5987c98e539e7cc0800000000000000
+      internalID: -3711367008658945702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_36
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 63
+        width: 8
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c79774772fa388da0800000000000000
+      internalID: -5942434895257699972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_37
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 79
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a418e391fdbed770800000000000000
+      internalID: 8637549980609418400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_38
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 71
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c59c24126a7924430800000000000000
+      internalID: 3765738978213546332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_39
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 63
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6eb6af06d9fa10870800000000000000
+      internalID: 8647385849999813606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_40
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 63
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd17e062a96fa1220800000000000000
+      internalID: 2457547688607904219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_41
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 63
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04fb7af9fdb4ae730800000000000000
+      internalID: 4029116240464691008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_42
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 63
+        width: 10
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac30fc7efe84cab50800000000000000
+      internalID: 6605734948669162442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_43
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 63
+        width: 8
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 664514f6187335930800000000000000
+      internalID: 4130706312285738086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_44
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 63
+        width: 8
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e79a608c6f9164e10800000000000000
+      internalID: 2181459617216113022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_45
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 63
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ad0aedcc7063d4a0800000000000000
+      internalID: -6569801342256542295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_46
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 63
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b334dcb5672fc860800000000000000
+      internalID: 7552298418036814776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_47
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 63
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae0e4c58760b54d60800000000000000
+      internalID: 7873893482199572714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_48
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 63
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8c9d029ef4e83900800000000000000
+      internalID: 664532727060339853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_49
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 71
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92f3fa298eba61ec0800000000000000
+      internalID: -3596498237027041495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_50
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 63
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ab36e788ffa62ef0800000000000000
+      internalID: -133225656994088030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_51
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 63
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b01206a3f5a99250800000000000000
+      internalID: 5951970848427610289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_52
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 71
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94c26409828cdb4a0800000000000000
+      internalID: -6575879804346291127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_53
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 63
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83c3f97c211be0e10800000000000000
+      internalID: 2165863165028416568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_54
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 55
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5259a5469e2c694a0800000000000000
+      internalID: -6586863097315945179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_55
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 47
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6dd9afe261b86cea0800000000000000
+      internalID: -5852837738327663146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_56
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 55
+        width: 17
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c43eb2109badacd0800000000000000
+      internalID: -2545189579116366649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_57
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 55
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7bf313feebc93e490800000000000000
+      internalID: -7718152992512196681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_58
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 47
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e4791b7b80e8b3f0800000000000000
+      internalID: -884710437107960604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_59
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 55
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 383dd314bf4170a40800000000000000
+      internalID: 5334255353007559555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_60
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 48
+        width: 9
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba27dd95526b88090800000000000000
+      internalID: -8031969663877549397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_61
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 48
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bdccc342d7a8710d0800000000000000
+      internalID: -3452138319272686373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_62
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 55
+        width: 15
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1ebb54fb5afbb820800000000000000
+      internalID: 2935214855010631194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_63
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 47
+        width: 15
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd6a7b7b04bcf2f00800000000000000
+      internalID: 1094316713294931679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_64
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 55
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89d6dd1eaccd25f50800000000000000
+      internalID: 6868795145624317336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_65
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 47
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b986a46d6c633bbc0800000000000000
+      internalID: -3768608235552348005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_66
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 55
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb89358be3434c520800000000000000
+      internalID: 2721357518823725247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_67
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 16
+        width: 9
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73733e052558ef340800000000000000
+      internalID: 4899500033216558903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_68
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 16
+        width: 9
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fca156913e65f9710800000000000000
+      internalID: 1702174717552958159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_69
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 55
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 535a2dfe9f018b750800000000000000
+      internalID: 6320820742670951733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_70
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 47
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 887a9d9be27c05520800000000000000
+      internalID: 2688867981040658312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_71
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 55
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31ec8da3b8089dde0800000000000000
+      internalID: -1307872881298321901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_72
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 16
+        width: 9
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b8d3971502b9a6d0800000000000000
+      internalID: -2978653943588726605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_73
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 16
+        width: 9
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79d17d0c6005cf3d0800000000000000
+      internalID: -3171572047640322665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_74
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 39
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f78940595e4b00660800000000000000
+      internalID: 7350073490009266303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_75
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 47
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a720edcbfbcd7600800000000000000
+      internalID: 467754218667648935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_76
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 39
+        width: 14
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 937944a8406806810800000000000000
+      internalID: 1756551208732235577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_77
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 40
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f528c39fc8b466670800000000000000
+      internalID: 8531589612948980319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_78
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 40
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4fd80d3a0abe1f600800000000000000
+      internalID: 500440108790484468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_79
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 47
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7968c2bdf3fe4f20800000000000000
+      internalID: 3408930238917798268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_80
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 39
+        width: 15
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 574252d7338073470800000000000000
+      internalID: 8374171049354667125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_81
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 47
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5fd7d3bf618160a20800000000000000
+      internalID: 3028134286436695541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_82
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 39
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc4099f6431c9d190800000000000000
+      internalID: -7937100437309029171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_83
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 47
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 340cd22590e2f1890800000000000000
+      internalID: -7485213438098161597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_84
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 47
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b4830ca597ec4270800000000000000
+      internalID: 8236212448575849653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_85
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 39
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7bb6c83362f992500800000000000000
+      internalID: 372003430657190839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_86
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 47
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c29d39a53675e780800000000000000
+      internalID: -8654381136077811002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_87
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 31
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6facdd394c3280700800000000000000
+      internalID: 506694285280529142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_88
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 31
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6fab886baadefc5c0800000000000000
+      internalID: -4192871410596005130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_89
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 32
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 194162ea912dea670800000000000000
+      internalID: 8552003750160897169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_90
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 32
+        width: 15
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f489108208705a8c0800000000000000
+      internalID: -3988773647958304689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_91
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 31
+        width: 15
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9531a8c9b2057a320800000000000000
+      internalID: 2569110260678267737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_92
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 31
+        width: 17
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3146a4c98548f5c70800000000000000
+      internalID: 8962027299604685843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_93
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 39
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0162c35a4a494cde0800000000000000
+      internalID: -1313761756417612272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_94
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 39
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52f4fd757d02c8050800000000000000
+      internalID: 5804050129038036773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_95
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 31
+        width: 17
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5d4754885118b790800000000000000
+      internalID: -7514236906392564386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_96
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 39
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b63109d93a068620800000000000000
+      internalID: 2775917463890638518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_97
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 39
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d9a4d9cdaca58ef0800000000000000
+      internalID: -106489153757861417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_98
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 19
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f18854965330074f0800000000000000
+      internalID: -833162403129227233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_99
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 31
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 712c87d57502fdca0800000000000000
+      internalID: -5990033419777031657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_100
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 17
+        width: 12
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d10490dd9dc1436f0800000000000000
+      internalID: -705907519548473315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_101
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 24
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4c1befccc8003710800000000000000
+      internalID: 1670845137509096523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_102
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 24
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad788dded66449960800000000000000
+      internalID: 7607783108491380698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_103
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 31
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88f142e5dfc0317b0800000000000000
+      internalID: -5254842057865551992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_104
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 23
+        width: 15
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3c348e99785b98a0800000000000000
+      internalID: -6297342374573753284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_105
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 0
+        width: 34
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07d50e7af9c51b0b0800000000000000
+      internalID: -5714684611370394256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_106
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 31
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75d30d5b1082678b0800000000000000
+      internalID: -5154888735668552361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_107
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 0
+        width: 34
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac4605a729ee2e9a0800000000000000
+      internalID: -6205135023678397238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_108
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 31
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3802af696b49b91c0800000000000000
+      internalID: -4495836291061374845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_109
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 7
+        width: 34
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62307adb835842be0800000000000000
+      internalID: -1502929896888401114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_110
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 19
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b64ae64f72db7280800000000000000
+      internalID: -9044403982551071055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_111
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 18
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 938613840ff0a6ae0800000000000000
+      internalID: -1555413196625319879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_112
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 17
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98788c6b5c8c38970800000000000000
+      internalID: 8756062852039083913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_113
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 16
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55aeec36e422af590800000000000000
+      internalID: -7639756097803326891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_114
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 17
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 353da960cbe465e80800000000000000
+      internalID: -8190272302855040173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_115
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 15
+        width: 15
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9bab8acd86ee4f070800000000000000
+      internalID: 8139392560711383737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_116
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 15
+        width: 9
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30a3aaff483037da0800000000000000
+      internalID: -5948406813066380797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_117
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 16
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c719b13674d926b0800000000000000
+      internalID: -5320487880656087103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_118
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 15
+        width: 9
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58d15b531ee6e9890800000000000000
+      internalID: -7449394820076462715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_119
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 16
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e4573e7a026ac8d0800000000000000
+      internalID: -2825338019014814496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_120
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 7
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1a1301d23e7a1ef0800000000000000
+      internalID: -136658081961272802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_121
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2164f4eda7e9f650800000000000000
+      internalID: 6267295090519335210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_122
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c559c9c26164da000800000000000000
+      internalID: 48772232022627676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_123
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 0
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60da52ab9b5245860800000000000000
+      internalID: 7517675157610409222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_124
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2162433774efb76f0800000000000000
+      internalID: -685674935414938094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_125
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 7
+        width: 15
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25e6d4d20596e95d0800000000000000
+      internalID: -3053887704232268206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemies-no-shadow_126
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 0
+        width: 15
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00ed9ba66f308ad40800000000000000
+      internalID: 5595726893895245312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Enemies-no-shadow_0: 7299337719647107362
+      Enemies-no-shadow_1: 8101082181969984612
+      Enemies-no-shadow_10: -4835259876748532053
+      Enemies-no-shadow_100: -705907519548473315
+      Enemies-no-shadow_101: 1670845137509096523
+      Enemies-no-shadow_102: 7607783108491380698
+      Enemies-no-shadow_103: -5254842057865551992
+      Enemies-no-shadow_104: -6297342374573753284
+      Enemies-no-shadow_105: -5714684611370394256
+      Enemies-no-shadow_106: -5154888735668552361
+      Enemies-no-shadow_107: -6205135023678397238
+      Enemies-no-shadow_108: -4495836291061374845
+      Enemies-no-shadow_109: -1502929896888401114
+      Enemies-no-shadow_11: 6544732543284624428
+      Enemies-no-shadow_110: -9044403982551071055
+      Enemies-no-shadow_111: -1555413196625319879
+      Enemies-no-shadow_112: 8756062852039083913
+      Enemies-no-shadow_113: -7639756097803326891
+      Enemies-no-shadow_114: -8190272302855040173
+      Enemies-no-shadow_115: 8139392560711383737
+      Enemies-no-shadow_116: -5948406813066380797
+      Enemies-no-shadow_117: -5320487880656087103
+      Enemies-no-shadow_118: -7449394820076462715
+      Enemies-no-shadow_119: -2825338019014814496
+      Enemies-no-shadow_12: -2360319791942042371
+      Enemies-no-shadow_120: -136658081961272802
+      Enemies-no-shadow_121: 6267295090519335210
+      Enemies-no-shadow_122: 48772232022627676
+      Enemies-no-shadow_123: 7517675157610409222
+      Enemies-no-shadow_124: -685674935414938094
+      Enemies-no-shadow_125: -3053887704232268206
+      Enemies-no-shadow_126: 5595726893895245312
+      Enemies-no-shadow_13: -3562781061421553333
+      Enemies-no-shadow_14: 3016308287446969293
+      Enemies-no-shadow_15: 3084254347585448071
+      Enemies-no-shadow_16: 6733243280634972144
+      Enemies-no-shadow_17: -5346095270127892668
+      Enemies-no-shadow_18: -2478701616439070446
+      Enemies-no-shadow_19: 1856111908830995446
+      Enemies-no-shadow_2: -5813821706574751018
+      Enemies-no-shadow_20: 7334470874879645692
+      Enemies-no-shadow_21: -6191539765046870401
+      Enemies-no-shadow_22: -1156515005028933393
+      Enemies-no-shadow_23: -4026757964481179700
+      Enemies-no-shadow_24: 2672562095495076579
+      Enemies-no-shadow_25: -8452947743588874035
+      Enemies-no-shadow_26: -6662478508366160580
+      Enemies-no-shadow_27: -7914407321557192316
+      Enemies-no-shadow_28: 7027576155061652323
+      Enemies-no-shadow_29: -5071341204702802224
+      Enemies-no-shadow_3: 3702969444655200991
+      Enemies-no-shadow_30: -102613878120446530
+      Enemies-no-shadow_31: -3689507422397707749
+      Enemies-no-shadow_32: 1406721932012358614
+      Enemies-no-shadow_33: 5224027178576213999
+      Enemies-no-shadow_34: -923352571887228148
+      Enemies-no-shadow_35: -3711367008658945702
+      Enemies-no-shadow_36: -5942434895257699972
+      Enemies-no-shadow_37: 8637549980609418400
+      Enemies-no-shadow_38: 3765738978213546332
+      Enemies-no-shadow_39: 8647385849999813606
+      Enemies-no-shadow_4: -7981301054809573528
+      Enemies-no-shadow_40: 2457547688607904219
+      Enemies-no-shadow_41: 4029116240464691008
+      Enemies-no-shadow_42: 6605734948669162442
+      Enemies-no-shadow_43: 4130706312285738086
+      Enemies-no-shadow_44: 2181459617216113022
+      Enemies-no-shadow_45: -6569801342256542295
+      Enemies-no-shadow_46: 7552298418036814776
+      Enemies-no-shadow_47: 7873893482199572714
+      Enemies-no-shadow_48: 664532727060339853
+      Enemies-no-shadow_49: -3596498237027041495
+      Enemies-no-shadow_5: 6813240821204222888
+      Enemies-no-shadow_50: -133225656994088030
+      Enemies-no-shadow_51: 5951970848427610289
+      Enemies-no-shadow_52: -6575879804346291127
+      Enemies-no-shadow_53: 2165863165028416568
+      Enemies-no-shadow_54: -6586863097315945179
+      Enemies-no-shadow_55: -5852837738327663146
+      Enemies-no-shadow_56: -2545189579116366649
+      Enemies-no-shadow_57: -7718152992512196681
+      Enemies-no-shadow_58: -884710437107960604
+      Enemies-no-shadow_59: 5334255353007559555
+      Enemies-no-shadow_6: -4748474247088817138
+      Enemies-no-shadow_60: -8031969663877549397
+      Enemies-no-shadow_61: -3452138319272686373
+      Enemies-no-shadow_62: 2935214855010631194
+      Enemies-no-shadow_63: 1094316713294931679
+      Enemies-no-shadow_64: 6868795145624317336
+      Enemies-no-shadow_65: -3768608235552348005
+      Enemies-no-shadow_66: 2721357518823725247
+      Enemies-no-shadow_67: 4899500033216558903
+      Enemies-no-shadow_68: 1702174717552958159
+      Enemies-no-shadow_69: 6320820742670951733
+      Enemies-no-shadow_7: -4458063842228037306
+      Enemies-no-shadow_70: 2688867981040658312
+      Enemies-no-shadow_71: -1307872881298321901
+      Enemies-no-shadow_72: -2978653943588726605
+      Enemies-no-shadow_73: -3171572047640322665
+      Enemies-no-shadow_74: 7350073490009266303
+      Enemies-no-shadow_75: 467754218667648935
+      Enemies-no-shadow_76: 1756551208732235577
+      Enemies-no-shadow_77: 8531589612948980319
+      Enemies-no-shadow_78: 500440108790484468
+      Enemies-no-shadow_79: 3408930238917798268
+      Enemies-no-shadow_8: 3899864666523940246
+      Enemies-no-shadow_80: 8374171049354667125
+      Enemies-no-shadow_81: 3028134286436695541
+      Enemies-no-shadow_82: -7937100437309029171
+      Enemies-no-shadow_83: -7485213438098161597
+      Enemies-no-shadow_84: 8236212448575849653
+      Enemies-no-shadow_85: 372003430657190839
+      Enemies-no-shadow_86: -8654381136077811002
+      Enemies-no-shadow_87: 506694285280529142
+      Enemies-no-shadow_88: -4192871410596005130
+      Enemies-no-shadow_89: 8552003750160897169
+      Enemies-no-shadow_9: -1627259812619696592
+      Enemies-no-shadow_90: -3988773647958304689
+      Enemies-no-shadow_91: 2569110260678267737
+      Enemies-no-shadow_92: 8962027299604685843
+      Enemies-no-shadow_93: -1313761756417612272
+      Enemies-no-shadow_94: 5804050129038036773
+      Enemies-no-shadow_95: -7514236906392564386
+      Enemies-no-shadow_96: 2775917463890638518
+      Enemies-no-shadow_97: -106489153757861417
+      Enemies-no-shadow_98: -833162403129227233
+      Enemies-no-shadow_99: -5990033419777031657
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

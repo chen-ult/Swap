@@ -1,0 +1,507 @@
+fileFormatVersion: 2
+guid: a02a3945fe1ab2c41bc454ea834cf054
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1322175580118510291
+    second: slimao1_0
+  - first:
+      213: -8228719860715390746
+    second: slimao1_1
+  - first:
+      213: 6692494202975240717
+    second: slimao1_2
+  - first:
+      213: -4150384538345070129
+    second: slimao1_3
+  - first:
+      213: -2141330095137690308
+    second: slimao1_4
+  - first:
+      213: 4030153707118374657
+    second: slimao1_5
+  - first:
+      213: -610449842860740877
+    second: slimao1_6
+  - first:
+      213: -6455256134123549024
+    second: slimao1_7
+  - first:
+      213: -4734613599245035628
+    second: slimao1_8
+  - first:
+      213: -2375063977557634843
+    second: slimao1_9
+  - first:
+      213: -3300807478599645016
+    second: slimao1_10
+  - first:
+      213: -857375991748671746
+    second: slimao1_11
+  - first:
+      213: 6935817353011333879
+    second: slimao1_12
+  - first:
+      213: 2957562210944106656
+    second: slimao1_13
+  - first:
+      213: -2089068917513160507
+    second: slimao1_14
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: slimao1_0
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 102
+        width: 27
+        height: 9
+      alignment: 9
+      pivot: {x: 0.5000005, y: 0.7624986}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d251758a050b6ade0800000000000000
+      internalID: -1322175580118510291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slimao1_1
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 101
+        width: 23
+        height: 11
+      alignment: 9
+      pivot: {x: 0.4982391, y: 0.61778814}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e87bd162e6bdcd80800000000000000
+      internalID: -8228719860715390746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slimao1_2
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 99
+        width: 17
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0243bde40480ec50800000000000000
+      internalID: 6692494202975240717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slimao1_3
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 100
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc12ba6804fd666c0800000000000000
+      internalID: -4150384538345070129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slimao1_4
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: 100
+        width: 13
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3de67caf977842e0800000000000000
+      internalID: -2141330095137690308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slimao1_5
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 99
+        width: 11
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10fa307a17bfde730800000000000000
+      internalID: 4030153707118374657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slimao1_6
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 95
+        width: 11
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3fea71b2a1f3787f0800000000000000
+      internalID: -610449842860740877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slimao1_7
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 32
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ae87675fb25a66a0800000000000000
+      internalID: -6455256134123549024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slimao1_8
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 15
+        height: 13
+      alignment: 9
+      pivot: {x: 0.50000024, y: 0.51292187}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 497144c34064b4eb0800000000000000
+      internalID: -4734613599245035628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slimao1_9
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 32
+        width: 16
+        height: 12
+      alignment: 9
+      pivot: {x: 0.5075917, y: 0.55061215}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e0d9d265e31a0fd0800000000000000
+      internalID: -2375063977557634843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slimao1_10
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 32
+        width: 16
+        height: 11
+      alignment: 9
+      pivot: {x: 0.5014529, y: 0.6014852}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a88d1e261d2132d0800000000000000
+      internalID: -3300807478599645016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slimao1_11
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 32
+        width: 19
+        height: 10
+      alignment: 9
+      pivot: {x: 0.48861694, y: 0.66337585}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef64fdcf31df914f0800000000000000
+      internalID: -857375991748671746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slimao1_12
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 32
+        width: 22
+        height: 9
+      alignment: 9
+      pivot: {x: 0.50190043, y: 0.73676515}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7fa0b319229f04060800000000000000
+      internalID: 6935817353011333879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slimao1_13
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: 32
+        width: 19
+        height: 11
+      alignment: 9
+      pivot: {x: 0.4953581, y: 0.60264105}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a04178392f5b0920800000000000000
+      internalID: 2957562210944106656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slimao1_14
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 32
+        width: 19
+        height: 12
+      alignment: 9
+      pivot: {x: 0.5, y: 0.55469704}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c8715c43e22203e0800000000000000
+      internalID: -2089068917513160507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: ed74f940080917b438fd3f1ff3ae0c9c
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      slimao1_0: -1322175580118510291
+      slimao1_1: -8228719860715390746
+      slimao1_10: -3300807478599645016
+      slimao1_11: -857375991748671746
+      slimao1_12: 6935817353011333879
+      slimao1_13: 2957562210944106656
+      slimao1_14: -2089068917513160507
+      slimao1_2: 6692494202975240717
+      slimao1_3: -4150384538345070129
+      slimao1_4: -2141330095137690308
+      slimao1_5: 4030153707118374657
+      slimao1_6: -610449842860740877
+      slimao1_7: -6455256134123549024
+      slimao1_8: -4734613599245035628
+      slimao1_9: -2375063977557634843
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

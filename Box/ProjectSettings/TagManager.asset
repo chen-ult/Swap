@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 3
+  tags:
+  - SpawnPoint
+  - Box
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - Ground
+  - platfrom
+  - box
+  - Player
+  - Wall
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: background
+    uniqueID: 342600379
+    locked: 0
+  - name: plant
+    uniqueID: 1352724979
+    locked: 0
+  - name: trap
+    uniqueID: 1176070395
+    locked: 0
+  - name: Ground
+    uniqueID: 1059303345
+    locked: 0
+  - name: Enemy
+    uniqueID: 2315650735
+    locked: 0
+  - name: Player
+    uniqueID: 3377219397
+    locked: 0
+  m_RenderingLayers:
+  - Default
+  m_MigratedRenderPipelines: []
