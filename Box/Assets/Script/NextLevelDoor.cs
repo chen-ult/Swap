@@ -23,6 +23,15 @@ public class NextLevelDoor : MonoBehaviour
     [Tooltip("靠近门时弹出的提示文字，例如上方子物体里的 TextMeshPro / Sprite")]
     public GameObject interactPrompt;
 
+    [Header("音效设置")]
+    [Tooltip("门解锁时的音效")]
+    public AudioClip unlockSound;
+    [Tooltip("无法开启（拒绝）时的音效")]
+    public AudioClip rejectSound;
+    [Tooltip("进入门时的音效")]
+    public AudioClip enterSound;
+
+    private AudioSource audioSource;
     private bool isLocked;
     private bool isPlayerNear = false; // 玩家是否在门前
     private Vector3 initialLockScale;
@@ -30,6 +39,14 @@ public class NextLevelDoor : MonoBehaviour
 
     private void Awake()
     {
+        // 初始化AudioSource
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.playOnAwake = false;
+        }
+
         // 初始化时，如果需要钥匙，就默认为上锁状态
         isLocked = requiresKey;
 
@@ -67,12 +84,15 @@ public class NextLevelDoor : MonoBehaviour
         // 如果玩家在门范围内，且当前没上锁，按下 W 或 上方向键 进入
         if (isPlayerNear && !isLocked)
         {
-            if (Keyboard.current != null && Keyboard.current.wKey.wasPressedThisFrame)
+            bool isWPressed = Keyboard.current != null && Keyboard.current.wKey.wasPressedThisFrame;
+            bool isDpadUpPressed = Gamepad.current != null && Gamepad.current.dpad.up.wasPressedThisFrame;
+            
+            if (isWPressed || isDpadUpPressed)
             {
-                EnterNextLevel();
-            }
-            else if (Gamepad.current != null && Gamepad.current.dpad.up.wasPressedThisFrame)
-            {
+                if (enterSound != null && audioSource != null)
+                {
+                    audioSource.PlayOneShot(enterSound);
+                }
                 EnterNextLevel();
             }
         }
@@ -93,7 +113,12 @@ public class NextLevelDoor : MonoBehaviour
 
             if (isLocked)
             {
-                // 如果还锁着，玩家碰到门时给个拒绝的震动提示
+                // 如果还锁着，玩家碰到门时给个拒绝的震动提示和音效
+                if (rejectSound != null && audioSource != null)
+                {
+                    audioSource.PlayOneShot(rejectSound);
+                }
+
                 if (lockIcon != null && !DOTween.IsTweening(lockIcon))
                 {
                     lockIcon.DOShakePosition(0.2f, 0.3f, 20, 90f);
@@ -139,11 +164,13 @@ public class NextLevelDoor : MonoBehaviour
         // 如果填写了目标场景名称，就走分支逻辑
         if (!string.IsNullOrEmpty(targetSceneName))
         {
+            Debug.Log($"[NextLevelDoor] 进入指定关卡: {targetSceneName}");
             LevelManager.Instance.LoadSpecificLevel(targetSceneName);
         }
         // 否则按照老逻辑按顺序加载
         else
         {
+            Debug.Log("[NextLevelDoor] 进入下一关卡");
             LevelManager.Instance.LoadNextLevel();
         }
     }
@@ -153,8 +180,18 @@ public class NextLevelDoor : MonoBehaviour
     /// </summary>
     public void UnlockDoor()
     {
-        if (!isLocked) return;
+        if (!isLocked) 
+        {
+            Debug.LogWarning("[NextLevelDoor] 尝试解锁已解锁的门");
+            return;
+        }
         isLocked = false;
+        Debug.Log("[NextLevelDoor] 门已解锁");
+
+        if (unlockSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(unlockSound);
+        }
 
         if (lockIcon != null)
         {
