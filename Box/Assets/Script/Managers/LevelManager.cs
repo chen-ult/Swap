@@ -73,9 +73,12 @@ public class LevelManager : MonoBehaviour
 
         // 2. 加载新场景
         SceneManager.LoadScene(sceneIndex);
+
+        // 必须等待两帧，确保旧场景物体已被销毁，新场景物体已完全初始化
         yield return null; yield return null; 
 
         MovePlayerToSpawnPoint();
+        SnapCinemachineCamera();
 
         // 3. 呼叫 UI 管理器：屏幕变亮
         yield return UIManager.Instance.FadeInRoutine();
@@ -91,9 +94,12 @@ public class LevelManager : MonoBehaviour
         yield return UIManager.Instance.FadeOutRoutine();
 
         SceneManager.LoadScene(sceneName);
+
+        // 必须等待两帧
         yield return null; yield return null; 
 
         MovePlayerToSpawnPoint();
+        SnapCinemachineCamera();
 
         yield return UIManager.Instance.FadeInRoutine();
 
@@ -108,6 +114,8 @@ public class LevelManager : MonoBehaviour
         yield return UIManager.Instance.FadeOutRoutine();
 
         SceneManager.LoadScene(sceneName);
+
+        // 必须等待两帧，新场景和新玩家才算加载完毕
         yield return null; yield return null; 
 
         GameObject player = GameObject.FindGameObjectWithTag("Player");
@@ -116,10 +124,12 @@ public class LevelManager : MonoBehaviour
             float posX = PlayerPrefs.GetFloat("CheckpointX");
             float posY = PlayerPrefs.GetFloat("CheckpointY");
             player.transform.position = new Vector2(posX, posY);
-            
+
             Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
             if (rb != null) rb.linearVelocity = Vector2.zero;
         }
+
+        SnapCinemachineCamera();
 
         yield return UIManager.Instance.FadeInRoutine();
 
@@ -136,6 +146,38 @@ public class LevelManager : MonoBehaviour
             player.transform.position = spawnPoint.transform.position;
             Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
             if (rb != null) rb.linearVelocity = Vector2.zero;
+        }
+    }
+
+    private void SnapCinemachineCamera()
+    {
+        // 重置物理时间轴以防受子弹时间残留影响导致相机逻辑死机
+        Time.timeScale = 1f;
+        Time.fixedDeltaTime = 0.02f;
+
+        GameObject p = GameObject.FindGameObjectWithTag("Player");
+        if (p == null) return;
+
+        var allBehaviors = Object.FindObjectsByType<MonoBehaviour>(FindObjectsInactive.Exclude);
+        foreach (var b in allBehaviors)
+        {
+            string typeName = b.GetType().Name;
+            if (typeName == "CinemachineVirtualCamera" || typeName == "CinemachineCamera")
+            {
+                // 1. 强制将新玩家设为跟随目标（防止它还追踪着上一局被销毁的老玩家尸体）
+                var followProp = b.GetType().GetProperty("Follow");
+                if (followProp != null)
+                {
+                    followProp.SetValue(b, p.transform);
+                }
+
+                // 2. 切断上一帧的记录，强制本帧发生跳变（而不是带有延迟去缓慢移动过去）
+                var prop = b.GetType().GetProperty("PreviousStateIsValid");
+                if (prop != null)
+                {
+                    prop.SetValue(b, false);
+                }
+            }
         }
     }
 

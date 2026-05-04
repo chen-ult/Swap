@@ -2960,6 +2960,10 @@ PrefabInstance:
       value: GameManager
       objectReference: {fileID: 0}
     - target: {fileID: 5575103647551892700, guid: 64cfc43f4bae26a458a2181e24077f9b, type: 3}
+      propertyPath: slowMotionScale
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 5575103647551892700, guid: 64cfc43f4bae26a458a2181e24077f9b, type: 3}
       propertyPath: useTrueMomentum
       value: 0
       objectReference: {fileID: 0}
@@ -2978,7 +2982,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 143535719353697398, guid: e8abd2a107b830448af6d3f8149cc59a, type: 3}
       propertyPath: levelTitle
-      value: "\u7B2C\u4E09\u5173:>25"
+      value: "\u7B2C3\u5173:>25"
       objectReference: {fileID: 0}
     - target: {fileID: 251865057336339717, guid: e8abd2a107b830448af6d3f8149cc59a, type: 3}
       propertyPath: m_Pivot.x
@@ -3066,11 +3070,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7862812258676371938, guid: e8abd2a107b830448af6d3f8149cc59a, type: 3}
       propertyPath: m_text
-      value: "\u7B2C\u4E09\u5173:>25"
+      value: "\u7B2C3\u5173:>25"
       objectReference: {fileID: 0}
     - target: {fileID: 7862812258676371938, guid: e8abd2a107b830448af6d3f8149cc59a, type: 3}
       propertyPath: m_fontSize
-      value: 35.25
+      value: 37.45
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
