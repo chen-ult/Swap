@@ -7,6 +7,10 @@ public class PressureButton : MonoBehaviour
     public Sprite unpressedSprite; // 未被踩下的图片
     public Sprite pressedSprite;   // 被踩下时的图片
 
+    [Header("音效")]
+    public AudioClip pressSound;
+    [Range(0f, 1f)] public float soundVolume = 1f;
+
     [Header("行为设置")]
     [Tooltip("如果勾选，按钮一旦被踩下就会永久保持激活状态，哪怕箱子或玩家离开了也不会弹起关门！")]
     public bool stayPressed = false;
@@ -16,6 +20,7 @@ public class PressureButton : MonoBehaviour
     public ToggleDoor[] linkedDoors;
 
     private SpriteRenderer sr;
+    private AudioSource audioSource;
     
     // 记录目前有几个物体压在上面，防止玩家和箱子都在上面时，玩家一走门就关了
     private int objectsOnButton = 0; 
@@ -23,6 +28,12 @@ public class PressureButton : MonoBehaviour
     private void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.playOnAwake = false;
+        }
         if (unpressedSprite != null) sr.sprite = unpressedSprite;
     }
 
@@ -36,6 +47,7 @@ public class PressureButton : MonoBehaviour
         // 只要刚从 0 变成 1，说明按钮被踩下了
         if (objectsOnButton == 1)
         {
+            PlayPressSound();
             ActivateMechanism(true);
         }
     }
@@ -71,5 +83,12 @@ public class PressureButton : MonoBehaviour
                 door.SetDoorState(isPressed);
             }
         }
+    }
+
+    private void PlayPressSound()
+    {
+        if (pressSound == null || audioSource == null) return;
+
+        audioSource.PlayOneShot(pressSound, soundVolume);
     }
 }

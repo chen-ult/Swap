@@ -48,10 +48,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79a527dab3448a5498021ec3482acfd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NextLevelDoor
-  targetSceneName: level_3
+  targetSceneName: level_2
   requiresKey: 1
   lockIcon: {fileID: 5183735003852088848}
   interactPrompt: {fileID: 109236435285764570}
+  unlockSound: {fileID: 8300000, guid: 89490619045c2834ba93c69f9a127ceb, type: 3}
+  rejectSound: {fileID: 8300000, guid: 785b76a8b4b976a48972e3f210df4e95, type: 3}
+  enterSound: {fileID: 8300000, guid: 89490619045c2834ba93c69f9a127ceb, type: 3}
 --- !u!212 &3810601074392931619
 SpriteRenderer:
   serializedVersion: 2

@@ -9,9 +9,25 @@ using DG.Tweening;
 
 public class Player : Entity
 {
-    public static event Action OnPlayerDeath;//Íæ¼ÒËÀÍöÊÂ¼þ
+    public static event Action OnPlayerDeath;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½
 
     public PlayerInputSet input;
+
+    [Header("Audio / SFX")]
+    public AudioSource audioSource;
+    [Tooltip("×¨ï¿½Ã½Å²ï¿½ï¿½ï¿½Ô´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í£Ö¹ï¿½Æ¶ï¿½Ê±ï¿½ï¿½ï¿½ï¿½Í£Ö¹ï¿½Å²ï¿½ï¿½ï¿½ï¿½ï¿½Ó°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§")]
+    public AudioSource footstepSource;
+    public AudioClip sfx_PlayerJump;
+    public AudioClip sfx_PlayerLand;
+    public AudioClip sfx_PlayerHurt;
+    public AudioClip sfx_Split;
+    public AudioClip sfx_SlimeCloneSpawn;
+    public AudioClip sfx_SmallBounce;
+    public AudioClip sfx_Footstep;
+    [Range(0f, 1f)] public float sfxVolume = 1f;
+    [Header("Footstep")]
+    [SerializeField] private float stepInterval = 0.35f;
+    public float StepInterval => stepInterval;
 
     #region State
     public Player_IdleState idleState { get; private set; }
@@ -23,42 +39,42 @@ public class Player : Entity
     #endregion
 
 
-    #region ÒÆ¶¯²ÎÊý
-    [Header("------------ÒÆ¶¯²ÎÊý------------")]
-    public float movespeed;//ÒÆ¶¯ËÙ¶È
-    public float jumpforce = 5;//ÌøÔ¾Á¦
-    public Vector2 wallJumpForce;//Ç½±ÚÌøÔ¾Á¦
+    #region ï¿½Æ¶ï¿½ï¿½ï¿½ï¿½ï¿½
+    [Header("------------ï¿½Æ¶ï¿½ï¿½ï¿½ï¿½ï¿½------------")]
+    public float movespeed;//ï¿½Æ¶ï¿½ï¿½Ù¶ï¿½
+    public float jumpforce = 5;//ï¿½ï¿½Ô¾ï¿½ï¿½
+    public Vector2 wallJumpForce;//Ç½ï¿½ï¿½ï¿½ï¿½Ô¾ï¿½ï¿½
 
     [Range(0f, 1f)]
-    public float inAirMoveMultiplier = .7f;//¿ÕÖÐÒÆ¶¯±¶ÂÊ
+    public float inAirMoveMultiplier = .7f;//ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½ï¿½ï¿½ï¿½ï¿½
     [Range(0f, 1f)]
-    public float wallSlideMultiplier = .3f;//Ç½±Ú»¬ÐÐ±¶ÂÊ
+    public float wallSlideMultiplier = .3f;//Ç½ï¿½Ú»ï¿½ï¿½Ð±ï¿½ï¿½ï¿½
 
-    [Header("³å´Ì²ÎÊý")]
-    public float dashDuration = .25f;//³å´Ì³ÖÐøÊ±¼ä
-    public float dashSpeed = 20;//³å´ÌËÙ¶È
+    [Header("ï¿½ï¿½Ì²ï¿½ï¿½ï¿½")]
+    public float dashDuration = .25f;//ï¿½ï¿½Ì³ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+    public float dashSpeed = 20;//ï¿½ï¿½ï¿½ï¿½Ù¶ï¿½
 
-    public Vector2 moveInput { get; private set; }//ÒÆ¶¯ÊäÈë
+    public Vector2 moveInput { get; private set; }//ï¿½Æ¶ï¿½ï¿½ï¿½ï¿½ï¿½
     #endregion
 
     private Collider2D col;
-    public LayerMask obstacleLayer; // ÓÃÓÚ¼ì²âÍæ¼ÒÊÇ·ñ±»¿¨ÔÚÇ½Àï»òµØÃæÀï
+    public LayerMask obstacleLayer; // ï¿½ï¿½ï¿½Ú¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ñ±»¿ï¿½ï¿½ï¿½Ç½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
     [Space(10)]
-    [Header("Ê·À³Ä··ÖÁÑ»úÖÆ")]
-    public float splitSpeedThreshold = 15f; // ×²»÷Ç½Ãæ»òµØÃæÐèÒª´ïµ½¶à´óËÙ¶È²Å»á´¥·¢·ÖÁÑ
-    public bool isSplit = false; // ÊÇ·ñÒÑ¾­´¦ÓÚ·ÖÁÑ×´Ì¬
-    public float splitBounceForce = 12f; // ·ÖÁÑºóÍùÉÏµ¯µÄÁ¦
+    [Header("Ê·ï¿½ï¿½Ä·ï¿½ï¿½ï¿½Ñ»ï¿½ï¿½ï¿½")]
+    public float splitSpeedThreshold = 15f; // ×²ï¿½ï¿½Ç½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ïµ½ï¿½ï¿½ï¿½ï¿½Ù¶È²Å»á´¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    public bool isSplit = false; // ï¿½Ç·ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½Ú·ï¿½ï¿½ï¿½×´Ì¬
+    public float splitBounceForce = 12f; // ï¿½ï¿½ï¿½Ñºï¿½ï¿½ï¿½ï¿½Ïµï¿½ï¿½ï¿½ï¿½ï¿½
 
-    [Tooltip("·ÖÁÑ·ÖÉíµÄÔ¤ÖÆÌå£¨ÇëÔÚÏîÄ¿ÀïÅäÖÃºÃÒ»¸ö°üº¬SlimeClone½Å±¾µÄÔ¤ÖÆÌå²¢ÍÏÈë´Ë²ÛÎ»£©")]
+    [Tooltip("ï¿½ï¿½ï¿½Ñ·ï¿½ï¿½ï¿½ï¿½ï¿½Ô¤ï¿½ï¿½ï¿½å£¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½ï¿½ï¿½Ãºï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½SlimeCloneï¿½Å±ï¿½ï¿½ï¿½Ô¤ï¿½ï¿½ï¿½å²¢ï¿½ï¿½ï¿½ï¿½Ë²ï¿½Î»ï¿½ï¿½")]
     public GameObject slimeClonePrefab;
 
-    [Tooltip("·ÖÁÑºóµÄÌå»ýËõ·Å±ÈÀý£¨0.5´ú±íÒ»°ë£¬Èç¹ûÌ«Ð¡¿ÉÒÔµ÷Îª0.7×óÓÒ£©")]
+    [Tooltip("ï¿½ï¿½ï¿½Ñºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å±ï¿½ï¿½ï¿½ï¿½ï¿½0.5ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ë£¬ï¿½ï¿½ï¿½Ì«Ð¡ï¿½ï¿½ï¿½Ôµï¿½Îª0.7ï¿½ï¿½ï¿½Ò£ï¿½")]
     public float splitScaleMultiplier = 0.7f;
 
-    private Vector3 originalScale; // Íæ¼ÒÔ­Ê¼´óÐ¡
+    private Vector3 originalScale; // ï¿½ï¿½ï¿½Ô­Ê¼ï¿½ï¿½Ð¡
 
-    // ¡¾ÐÂÔöÐÞ¸´¡¿£ºÌá¹©¸øÍâ²¿´«ËÍÃÅ¶ÁÈ¡ÕæÕý±ê×¼´óÐ¡µÄ·½·¨£¬·ÀÖ¹ËüÎ®Ëõ×êÃÅµ¼ÖÂÒ»Ö±²Ð¼²¡£
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Þ¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½á¹©ï¿½ï¿½ï¿½â²¿ï¿½ï¿½ï¿½ï¿½ï¿½Å¶ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×¼ï¿½ï¿½Ð¡ï¿½Ä·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¹ï¿½ï¿½Î®ï¿½ï¿½ï¿½ï¿½ï¿½Åµï¿½ï¿½ï¿½Ò»Ö±ï¿½Ð¼ï¿½ï¿½ï¿½
     public Vector3 GetOriginalScale()
     {
         return originalScale;
@@ -83,6 +99,30 @@ public class Player : Entity
         fallendState = new Player_FallEndState(this, stateMachine, "fallend");
         deadState = new Player_DeadState(this, stateMachine, "dead");
 
+        // prepare audio source
+        if (audioSource == null)
+        {
+            audioSource = GetComponent<AudioSource>();
+            if (audioSource == null)
+            {
+                audioSource = gameObject.AddComponent<AudioSource>();
+                audioSource.playOnAwake = false;
+            }
+        }
+        // prepare dedicated footstep source
+        if (footstepSource == null)
+        {
+            // try find child named FootstepSource first
+            footstepSource = transform.Find("FootstepSource")?.GetComponent<AudioSource>();
+            if (footstepSource == null)
+            {
+                footstepSource = gameObject.AddComponent<AudioSource>();
+                footstepSource.playOnAwake = false;
+                footstepSource.loop = false;
+                footstepSource.spatialBlend = audioSource != null ? audioSource.spatialBlend : 0f;
+            }
+        }
+
     }
 
     protected override void Start()
@@ -98,7 +138,7 @@ public class Player : Entity
     {
         base.Update();
 
-        // µ¥ÏòÆ½Ì¨ÏÂÂäÂß¼­ (°´ S ÇÒÔÚµØÃæ)
+        // ï¿½ï¿½ï¿½ï¿½Æ½Ì¨ï¿½ï¿½ï¿½ï¿½ï¿½ß¼ï¿½ (ï¿½ï¿½ S ï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½)
         if (moveInput.y < -0.5f && groundDetected && !isPassingThroughPlatform)
         {
             RaycastHit2D hit = Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, whatIsGround);
@@ -114,15 +154,15 @@ public class Player : Entity
         isPassingThroughPlatform = true;
         Collider2D[] playerColliders = GetComponentsInChildren<Collider2D>();
         
-        // ºöÂÔÅö×²£¬ÈÃÍæ¼ÒµôÏÂÈ¥
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òµï¿½ï¿½ï¿½È¥
         foreach (var pCol in playerColliders)
         {
             Physics2D.IgnoreCollision(pCol, platformCollider, true);
         }
         
-        yield return new WaitForSeconds(0.35f); // 0.35ÃëÍ¨³£×ã¹»´©¹ýÒ»²ãÆ½Ì¨
+        yield return new WaitForSeconds(0.35f); // 0.35ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ã¹»ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Æ½Ì¨
         
-        // »Ö¸´Åö×²
+        // ï¿½Ö¸ï¿½ï¿½ï¿½×²
         if (platformCollider != null)
         {
             foreach (var pCol in playerColliders)
@@ -135,7 +175,7 @@ public class Player : Entity
         isPassingThroughPlatform = false;
     }
 
-    public override void EntityDeath()//ÊµÌåËÀÍö£¬ÖØÐ´
+    public override void EntityDeath()//Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð´
     {
         base.EntityDeath();
 
@@ -146,7 +186,7 @@ public class Player : Entity
 
     private IEnumerator WaitDeathAnimation()
     {
-        // µÈ´ý1Ãë£¨Çë¸ù¾ÝÄãËÀÍö¶¯»­µÄÊµ¼Ê³¤¶ÈÐÞ¸ÄÕâ¸öÊ±¼ä£©
+        // ï¿½È´ï¿½1ï¿½ë£¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Êµï¿½Ê³ï¿½ï¿½ï¿½ï¿½Þ¸ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ä£©
         yield return new WaitForSeconds(1.0f);
 
         if (LevelManager.Instance != null)
@@ -155,7 +195,7 @@ public class Player : Entity
         }
         else
         {
-            Debug.LogError("Ã»ÓÐÕÒµ½ LevelManager.Instance£¬ÎÞ·¨¸´»îÍæ¼Ò£¡ÇëÈ·±£ÔÚ´Ë³¡¾°ÖÐÒÑ¾­²¼ÖÃÁË LevelManager¡£");
+            Debug.LogError("Ã»ï¿½ï¿½ï¿½Òµï¿½ LevelManager.Instanceï¿½ï¿½ï¿½Þ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò£ï¿½ï¿½ï¿½È·ï¿½ï¿½ï¿½Ú´Ë³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ LevelManagerï¿½ï¿½");
         }
     }
 
@@ -178,16 +218,31 @@ public class Player : Entity
         transform.DOKill();
     }
 
+    /// <summary>
+    /// Play a footstep sound. Intended to be called from MoveState distance logic or from animation events.
+    /// </summary>
+    public void PlayFootstep()
+    {
+        if (footstepSource == null || sfx_Footstep == null) return;
+        if (footstepSource.isPlaying) return;
+        // small random pitch variation for natural feel
+        float oldPitch = footstepSource.pitch;
+        float rp = UnityEngine.Random.Range(0.97f, 1.03f);
+        footstepSource.pitch = rp;
+        footstepSource.PlayOneShot(sfx_Footstep, sfxVolume);
+        footstepSource.pitch = oldPitch;
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // Ö»ÓÐÅöµ½µØÃæ»òÕßÇ½±Ú²Å¼ÆËã (¼´Åö×²ÎïµÄLayerÔÚwhatIsGroundÖÐ)
+        // Ö»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç½ï¿½Ú²Å¼ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½×²ï¿½ï¿½ï¿½Layerï¿½ï¿½whatIsGroundï¿½ï¿½)
         int layerMask = 1 << collision.gameObject.layer;
         if ((layerMask & whatIsGround.value) != 0)
         {
-            // »ñÈ¡Åö×²Ë²¼äË«·½µÄÏà¶ÔËÙ¶È´óÐ¡
+            // ï¿½ï¿½È¡ï¿½ï¿½×²Ë²ï¿½ï¿½Ë«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ù¶È´ï¿½Ð¡
             float impactSpeed = collision.relativeVelocity.magnitude;
 
-            // Èç¹ûµ½´ïÁËãÐÖµ£¬ÇÒÄ¿Ç°»¹Ã»ÓÐ·ÖÁÑ
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½Ä¿Ç°ï¿½ï¿½Ã»ï¿½Ð·ï¿½ï¿½ï¿½
             if (impactSpeed >= splitSpeedThreshold && !isSplit)
             {
                 TriggerSplit(impactSpeed, collision.contacts[0].normal);
@@ -199,18 +254,25 @@ public class Player : Entity
     {
         isSplit = true;
 
-        // 1. ±äÐ¡µÄ¶¯»­
+        // 1. ï¿½ï¿½Ð¡ï¿½Ä¶ï¿½ï¿½ï¿½
         transform.DOKill();
         transform.DOScale(originalScale * splitScaleMultiplier, 0.2f).SetEase(Ease.OutBack);
 
-        // 2. ½«Íæ¼ÒÓÃ·´ÏòµÄµ¯Á¦µ¯Æð (»òÕß¼òµ¥µØÏòÕýÉÏ·½µ¯)
+        // 2. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã·ï¿½ï¿½ï¿½Äµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ß¼òµ¥µï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½)
         Vector2 bounceDir = hitNormal;
-        if (Mathf.Abs(bounceDir.y) < 0.1f) bounceDir.y = 1f; // È·±£ÉÔÎ¢ÓÐ¸öÏòÉÏµÄÅ×ÎïÏß
+        if (Mathf.Abs(bounceDir.y) < 0.1f) bounceDir.y = 1f; // È·ï¿½ï¿½ï¿½ï¿½Î¢ï¿½Ð¸ï¿½ï¿½ï¿½ï¿½Ïµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
         rb.linearVelocity = Vector2.zero;
         rb.AddForce(bounceDir.normalized * splitBounceForce, ForceMode2D.Impulse);
 
-        // 3. ÔÚÔ­µØÉú³ÉÒ»¸öÎÞ·¨ÒÆ¶¯µÄ·ÖÉí
+        // play split and small bounce sounds
+        if (audioSource != null)
+        {
+            if (sfx_Split != null) audioSource.PlayOneShot(sfx_Split, sfxVolume);
+            if (sfx_SmallBounce != null) audioSource.PlayOneShot(sfx_SmallBounce, sfxVolume);
+        }
+
+        // 3. ï¿½ï¿½Ô­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Þ·ï¿½ï¿½Æ¶ï¿½ï¿½Ä·ï¿½ï¿½ï¿½
         CreateClone(speed);
     }
 
@@ -218,19 +280,23 @@ public class Player : Entity
     {
         if (slimeClonePrefab == null)
         {
-            Debug.LogWarning("Î´·ÖÅä SlimeClone Ô¤ÖÆÌå£¡ÇëÔÚ Player Ãæ°åÖÐÉèÖÃ Slime Clone Prefab¡£");
+            Debug.LogWarning("Î´ï¿½ï¿½ï¿½ï¿½ SlimeClone Ô¤ï¿½ï¿½ï¿½å£¡ï¿½ï¿½ï¿½ï¿½ Player ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Slime Clone Prefabï¿½ï¿½");
             return;
         }
 
-        Vector3 spawnPos = transform.position - new Vector3(0, originalScale.y * (1f - splitScaleMultiplier) * 0.5f, 0); // ·ÅÔÚ½Åµ×
+        Vector3 spawnPos = transform.position - new Vector3(0, originalScale.y * (1f - splitScaleMultiplier) * 0.5f, 0); // ï¿½ï¿½ï¿½Ú½Åµï¿½
 
-        // ÊµÀý»¯·ÖÉíÔ¤ÖÆÌå£¬ÍêÈ«Ê¹ÓÃÔ¤ÖÆÌå×Ô´øµÄ³ß´ç
+        // Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¤ï¿½ï¿½ï¿½å£¬ï¿½ï¿½È«Ê¹ï¿½ï¿½Ô¤ï¿½ï¿½ï¿½ï¿½ï¿½Ô´ï¿½ï¿½Ä³ß´ï¿½
         GameObject cloneObj = Instantiate(slimeClonePrefab, spawnPos, Quaternion.identity);
 
         SlimeClone cloneScript = cloneObj.GetComponent<SlimeClone>();
         if (cloneScript == null) cloneScript = cloneObj.AddComponent<SlimeClone>();
 
         cloneScript.Init(this, speed);
+
+        // play slime clone spawn sound
+        if (audioSource != null && sfx_SlimeCloneSpawn != null)
+            audioSource.PlayOneShot(sfx_SlimeCloneSpawn, sfxVolume);
     }
 
     public void RestoreFromSplit()
@@ -249,16 +315,16 @@ public class Player : Entity
         });
     }
 
-    // ¼ì²âÊÇ·ñ¿¨ÔÚÕÏ°­ÎïÀï
+    // ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ï¿½ï¿½ï¿½ï¿½
     bool CheckPlayerStuck()
     {
         Vector2 center = col.bounds.center;
         Vector2 size = col.bounds.size;
 
-        // ¼ì²âµ±Ç°ÇøÓòÊÇ·ñÓÐÕÏ°­Îï²ã£¨Ö»¼ì²âÇ½¡¢µØÃæ£¬ºöÂÔÍæ¼Ò¡¢µÀ¾ß£©
+        // ï¿½ï¿½âµ±Ç°ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ï¿½ï¿½ã£¨Ö»ï¿½ï¿½ï¿½Ç½ï¿½ï¿½ï¿½ï¿½ï¿½æ£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò¡ï¿½ï¿½ï¿½ï¿½ß£ï¿½
         Collider2D hit = Physics2D.OverlapBox(center, size, 0, obstacleLayer);
 
-        // ÓÐÅö×²ÖØµþ = ±»¿¨×¡
+        // ï¿½ï¿½ï¿½ï¿½×²ï¿½Øµï¿½ = ï¿½ï¿½ï¿½ï¿½×¡
         return hit != null;
     }
 

@@ -9,6 +9,7 @@ public class LevelManager : MonoBehaviour
     public static LevelManager Instance { get; private set; }
 
     private bool isTransitioning = false;
+    public bool IsTransitioning => isTransitioning;
 
     private void Awake()
     {
@@ -16,6 +17,12 @@ public class LevelManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            // Ensure a persistent GameTimer exists
+            if (GameTimer.Instance == null)
+            {
+                GameObject gt = new GameObject("GameTimer");
+                gt.AddComponent<GameTimer>();
+            }
         }
         else
         {
@@ -49,6 +56,8 @@ public class LevelManager : MonoBehaviour
 
     public void RespawnAtCheckpoint()
     {
+        
+
         if (isTransitioning) return;
 
         string savedScene = PlayerPrefs.GetString("CheckpointScene", "");
@@ -80,7 +89,12 @@ public class LevelManager : MonoBehaviour
         MovePlayerToSpawnPoint();
         SnapCinemachineCamera();
 
-        // 3. 呼叫 UI 管理器：屏幕变亮
+        // 3. 呼叫 UI 管理器：如果是 level_0 先显示开始菜单以覆盖场景，再做淡入
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "level_0")
+        {
+            if (UIManager.Instance != null)
+                UIManager.Instance.ShowStartMenu();
+        }
         yield return UIManager.Instance.FadeInRoutine();
 
         isTransitioning = false;
@@ -101,6 +115,12 @@ public class LevelManager : MonoBehaviour
         MovePlayerToSpawnPoint();
         SnapCinemachineCamera();
 
+        // If we just loaded level_0 (from name), show the start menu before fade in so it covers content
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "level_0")
+        {
+            if (UIManager.Instance != null)
+                UIManager.Instance.ShowStartMenu();
+        }
         yield return UIManager.Instance.FadeInRoutine();
 
         isTransitioning = false;

@@ -244,6 +244,10 @@ public class MomentumSwapManager : MonoBehaviour
         isSlowingTime = true;
         Time.timeScale = slowMotionScale;
         Time.fixedDeltaTime = originalFixedDeltaTime * slowMotionScale;
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.SetGlobalPlaybackPitch(slowMotionScale);
+        }
         OnBulletTimeToggled?.Invoke(true);
     }
 
@@ -255,6 +259,10 @@ public class MomentumSwapManager : MonoBehaviour
         isSlowingTime = false;
         Time.timeScale = 1f;
         Time.fixedDeltaTime = originalFixedDeltaTime;
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.SetGlobalPlaybackPitch(1f);
+        }
         ClearSelection(); // 清空选中状态
         OnBulletTimeToggled?.Invoke(false);
     }

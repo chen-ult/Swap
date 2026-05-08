@@ -19,8 +19,13 @@ public class Player_FallState : Player_AiredState
     public override void Update()
     {
         base.Update();
-
         if (player.groundDetected)
+        {
+            // play landing sound if available
+            if (player.audioSource != null && player.sfx_PlayerLand != null)
+                player.audioSource.PlayOneShot(player.sfx_PlayerLand, player.sfxVolume);
+
             stateMachine.ChangeState(player.idleState);
+        }
     }
 }

@@ -6,6 +6,11 @@ using UnityEngine.SceneManagement;
 public class Checkpoint : MonoBehaviour
 {
     private Animator anim;
+    [Header("音效")]
+    public AudioClip activateSound;
+    [Range(0f, 1f)] public float soundVolume = 1f;
+
+    private AudioSource audioSource;
     private bool isActivated = false;
 
     // 全局静态委托：用来告诉场景里所有的 Checkpoint 有新的大哥被激活了
@@ -14,6 +19,12 @@ public class Checkpoint : MonoBehaviour
     private void Awake()
     {
         anim = GetComponentInChildren<Animator>();
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.playOnAwake = false;
+        }
 
         // 订阅全局静态事件
         OnAnyCheckpointActivated += HandleNewCheckpointActivated;
@@ -65,8 +76,10 @@ public class Checkpoint : MonoBehaviour
         }
     }
 
-    private void ActivateCheckpoint()
+    public void ActivateCheckpoint()
     {
+        if (isActivated) return;
+
         isActivated = true;
         
         Debug.Log($"玩家激活了新的存档点：{gameObject.name}");
@@ -81,6 +94,11 @@ public class Checkpoint : MonoBehaviour
         if (anim != null)
         {
             anim.SetBool("isActivated", true);
+        }
+
+        if (activateSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(activateSound, soundVolume);
         }
 
         // 3. 广播给全世界：“我亮了，其他所有点都给我关上！” (传入自己作为参数)

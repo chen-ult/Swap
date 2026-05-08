@@ -48,6 +48,13 @@ public class Entity_Stats : MonoBehaviour
 
         Debug.Log($"{gameObject.name} 受到了 {damage} 点伤害！当前血量：{currentHealth}/{maxHealth}");
 
+        // 如果这是玩家，播放受伤音效（由 Player 持有音源和音效引用）
+        var player = entity as Player;
+        if (player != null && player.audioSource != null && player.sfx_PlayerHurt != null)
+        {
+            player.audioSource.PlayOneShot(player.sfx_PlayerHurt, player.sfxVolume);
+        }
+
         // 检测是否死亡
         if (currentHealth <= 0)
         {

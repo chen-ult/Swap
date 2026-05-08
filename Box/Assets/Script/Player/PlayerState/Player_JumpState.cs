@@ -11,6 +11,9 @@ public class Player_JumpState : Player_AiredState
         base.Enter();
 
         player.SetVelocity(rb.linearVelocity.x, player.jumpforce);
+        // play jump sound
+        if (player.audioSource != null && player.sfx_PlayerJump != null)
+            player.audioSource.PlayOneShot(player.sfx_PlayerJump, player.sfxVolume);
     }
 
     public override void Exit()

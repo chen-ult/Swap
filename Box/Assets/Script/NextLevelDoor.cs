@@ -8,38 +8,38 @@ using TMPro;
 [RequireComponent(typeof(Collider2D))]
 public class NextLevelDoor : MonoBehaviour
 {
-    [Header("¹Ø¿¨·ÖÖ§ÉèÖÃ")]
-    [Tooltip("Èç¹û²»Ìî£¬ÔòÄ¬ÈÏ¼ÓÔØÏÂÒ»¹Ø£¨Ë³Ğò¼ÓÔØ£©¡£Èç¹ûÌîÁË£¬ÔòÌø×ªµ½Ö¸¶¨Ãû³ÆµÄ³¡¾°¡£")]
+    [Header("å…³å¡åˆ†æ”¯è®¾ç½®")]
+    [Tooltip("å¦‚æœä¸å¡«ï¼Œåˆ™é»˜è®¤åŠ è½½ä¸‹ä¸€å…³ï¼ˆé¡ºåºåŠ è½½ï¼‰ã€‚å¦‚æœå¡«äº†ï¼Œåˆ™è·³è½¬åˆ°æŒ‡å®šåç§°çš„åœºæ™¯ã€‚")]
     public string targetSceneName;
 
-    [Header("ËøÓëÔ¿³×ÉèÖÃ")]
-    [Tooltip("ÊÇ·ñĞèÒªÔ¿³×²ÅÄÜ½øÈë£¿Èç¹û²»ĞèÒª£¬Íæ¼ÒÅöµ½ÃÅÖ±½ÓÍ¨¹Ø")]
+    [Header("é”ä¸é’¥åŒ™è®¾ç½®")]
+    [Tooltip("æ˜¯å¦éœ€è¦é’¥åŒ™æ‰èƒ½è¿›å…¥ï¼Ÿå¦‚æœä¸éœ€è¦ï¼Œç©å®¶ç¢°åˆ°é—¨ç›´æ¥é€šå…³")]
     public bool requiresKey = false;
 
-    [Tooltip("ËøµÄÍ¼Æ¬/ÎïÌå£¨ÍÏÈë³¡¾°ÀïÌùÔÚÃÅÉÏµÄËø£©£¬½âËøÊ±»á²¥·ÅÕğ¶¯µôÂä¶¯»­")]
+    [Tooltip("é”çš„å›¾ç‰‡/ç‰©ä½“ï¼ˆæ‹–å…¥åœºæ™¯é‡Œè´´åœ¨é—¨ä¸Šçš„é”ï¼‰ï¼Œè§£é”æ—¶ä¼šæ’­æ”¾éœ‡åŠ¨æ‰è½åŠ¨ç”»")]
     public Transform lockIcon;
 
-    [Header("»¥¶¯ÌáÊ¾")]
-    [Tooltip("¿¿½üÃÅÊ±µ¯³öµÄÌáÊ¾ÎÄ×Ö£¬ÀıÈçÉÏ·½×ÓÎïÌåÀïµÄ TextMeshPro / Sprite")]
+    [Header("äº’åŠ¨æç¤º")]
+    [Tooltip("é è¿‘é—¨æ—¶å¼¹å‡ºçš„æç¤ºæ–‡å­—ï¼Œä¾‹å¦‚ä¸Šæ–¹å­ç‰©ä½“é‡Œçš„ TextMeshPro / Sprite")]
     public GameObject interactPrompt;
 
-    [Header("ÒôĞ§ÉèÖÃ")]
-    [Tooltip("ÃÅ½âËøÊ±µÄÒôĞ§")]
+    [Header("éŸ³æ•ˆè®¾ç½®")]
+    [Tooltip("é—¨è§£é”æ—¶çš„éŸ³æ•ˆ")]
     public AudioClip unlockSound;
-    [Tooltip("ÎŞ·¨¿ªÆô£¨¾Ü¾ø£©Ê±µÄÒôĞ§")]
+    [Tooltip("æ— æ³•å¼€å¯ï¼ˆæ‹’ç»ï¼‰æ—¶çš„éŸ³æ•ˆ")]
     public AudioClip rejectSound;
-    [Tooltip("½øÈëÃÅÊ±µÄÒôĞ§")]
+    [Tooltip("è¿›å…¥é—¨æ—¶çš„éŸ³æ•ˆ")]
     public AudioClip enterSound;
 
     private AudioSource audioSource;
     private bool isLocked;
-    private bool isPlayerNear = false; // Íæ¼ÒÊÇ·ñÔÚÃÅÇ°
+    private bool isPlayerNear = false; // ç©å®¶æ˜¯å¦åœ¨é—¨å‰
     private Vector3 initialLockScale;
     private Vector3 initialDoorScale;
 
     private void Awake()
     {
-        // ³õÊ¼»¯AudioSource
+        // åˆå§‹åŒ–AudioSource
         audioSource = GetComponent<AudioSource>();
         if (audioSource == null)
         {
@@ -47,10 +47,10 @@ public class NextLevelDoor : MonoBehaviour
             audioSource.playOnAwake = false;
         }
 
-        // ³õÊ¼»¯Ê±£¬Èç¹ûĞèÒªÔ¿³×£¬¾ÍÄ¬ÈÏÎªÉÏËø×´Ì¬
+        // åˆå§‹åŒ–æ—¶ï¼Œå¦‚æœéœ€è¦é’¥åŒ™ï¼Œå°±é»˜è®¤ä¸ºä¸Šé”çŠ¶æ€
         isLocked = requiresKey;
 
-        // Ò»¿ªÊ¼Òş²ØÌáÊ¾
+        // ä¸€å¼€å§‹éšè—æç¤º
         if (interactPrompt != null)
         {
             interactPrompt.SetActive(false);
@@ -61,9 +61,9 @@ public class NextLevelDoor : MonoBehaviour
     {
         initialDoorScale = transform.localScale;
 
-        // ÃÅ±¾ÉíµÄQµ¯ºôÎü´ı»ú¶¯»­
-        // Ö»À­Éì X Öá£¨¿í¶È£©£¬±£³Ö Y Öá£¨¸ß¶È£©ÍêÈ«²»±ä¡£
-        // ÕâÑù¿ÉÒÔ±ÜÃâÓÉÓÚÃÅÍ¼Æ¬µÄÖĞĞÄµã(Pivot)ÔÚ¾ÓÖĞÎ»ÖÃ£¬µ¼ÖÂËõ·ÅÊ±ÃÅµÄµ×²¿Ğü¿Õ»ò×êÈëµØÏÂµÄÎÊÌâ¡£
+        // é—¨æœ¬èº«çš„Qå¼¹å‘¼å¸å¾…æœºåŠ¨ç”»
+        // åªæ‹‰ä¼¸ X è½´ï¼ˆå®½åº¦ï¼‰ï¼Œä¿æŒ Y è½´ï¼ˆé«˜åº¦ï¼‰å®Œå…¨ä¸å˜ã€‚
+        // è¿™æ ·å¯ä»¥é¿å…ç”±äºé—¨å›¾ç‰‡çš„ä¸­å¿ƒç‚¹(Pivot)åœ¨å±…ä¸­ä½ç½®ï¼Œå¯¼è‡´ç¼©æ”¾æ—¶é—¨çš„åº•éƒ¨æ‚¬ç©ºæˆ–é’»å…¥åœ°ä¸‹çš„é—®é¢˜ã€‚
         transform.DOScaleX(initialDoorScale.x * 1.05f, 0.7f)
             .SetEase(Ease.InOutSine)
             .SetLoops(-1, LoopType.Yoyo);
@@ -72,7 +72,7 @@ public class NextLevelDoor : MonoBehaviour
         {
             initialLockScale = lockIcon.localScale;
 
-            // ËøµÄQµ¯ºôÎü´ı»ú¶¯»­ (ºáÏòÀ­Éì£¬×İÏòÑ¹±â£¬Ñ­»·²¥·Å)
+            // é”çš„Qå¼¹å‘¼å¸å¾…æœºåŠ¨ç”» (æ¨ªå‘æ‹‰ä¼¸ï¼Œçºµå‘å‹æ‰ï¼Œå¾ªç¯æ’­æ”¾)
             lockIcon.DOScale(new Vector3(initialLockScale.x * 1.15f, initialLockScale.y * 0.85f, initialLockScale.z), 0.7f)
                 .SetEase(Ease.InOutSine)
                 .SetLoops(-1, LoopType.Yoyo);
@@ -81,7 +81,7 @@ public class NextLevelDoor : MonoBehaviour
 
     private void Update()
     {
-        // Èç¹ûÍæ¼ÒÔÚÃÅ·¶Î§ÄÚ£¬ÇÒµ±Ç°Ã»ÉÏËø£¬°´ÏÂ W »ò ÉÏ·½Ïò¼ü ½øÈë
+        // å¦‚æœç©å®¶åœ¨é—¨èŒƒå›´å†…ï¼Œä¸”å½“å‰æ²¡ä¸Šé”ï¼ŒæŒ‰ä¸‹ W æˆ– ä¸Šæ–¹å‘é”® è¿›å…¥
         if (isPlayerNear && !isLocked)
         {
             bool isWPressed = Keyboard.current != null && Keyboard.current.wKey.wasPressedThisFrame;
@@ -100,7 +100,7 @@ public class NextLevelDoor : MonoBehaviour
 
     private void OnDestroy()
     {
-        // Ïú»ÙÊ±ÇåÀíTween±ÜÃâ±¨´í
+        // é”€æ¯æ—¶æ¸…ç†Tweené¿å…æŠ¥é”™
         transform.DOKill();
         if (lockIcon != null) lockIcon.DOKill();
     }
@@ -113,7 +113,7 @@ public class NextLevelDoor : MonoBehaviour
 
             if (isLocked)
             {
-                // Èç¹û»¹Ëø×Å£¬Íæ¼ÒÅöµ½ÃÅÊ±¸ø¸ö¾Ü¾øµÄÕğ¶¯ÌáÊ¾ºÍÒôĞ§
+                // å¦‚æœè¿˜é”ç€ï¼Œç©å®¶ç¢°åˆ°é—¨æ—¶ç»™ä¸ªæ‹’ç»çš„éœ‡åŠ¨æç¤ºå’ŒéŸ³æ•ˆ
                 if (rejectSound != null && audioSource != null)
                 {
                     audioSource.PlayOneShot(rejectSound);
@@ -126,7 +126,7 @@ public class NextLevelDoor : MonoBehaviour
                 return;
             }
 
-            // ½âËø×´Ì¬ÏÂ¿¿½ü£¬ÏÔÊ¾ÌáÊ¾¶¯»­
+            // è§£é”çŠ¶æ€ä¸‹é è¿‘ï¼Œæ˜¾ç¤ºæç¤ºåŠ¨ç”»
             if (interactPrompt != null)
             {
                 interactPrompt.SetActive(true);
@@ -143,7 +143,7 @@ public class NextLevelDoor : MonoBehaviour
         {
             isPlayerNear = false;
 
-            // Àë¿ª·¶Î§¹Ø±ÕÌáÊ¾
+            // ç¦»å¼€èŒƒå›´å…³é—­æç¤º
             if (interactPrompt != null && interactPrompt.activeSelf)
             {
                 interactPrompt.transform.DOKill();
@@ -157,36 +157,36 @@ public class NextLevelDoor : MonoBehaviour
 
     private void EnterNextLevel()
     {
-        // Ò»µ©½øÈë¾Í¿ÉÒÔ×èÖ¹ÖØ¸´´¥·¢
+        // ä¸€æ—¦è¿›å…¥å°±å¯ä»¥é˜»æ­¢é‡å¤è§¦å‘
         isPlayerNear = false;
         if (interactPrompt != null) interactPrompt.SetActive(false);
 
-        // Èç¹ûÌîĞ´ÁËÄ¿±ê³¡¾°Ãû³Æ£¬¾Í×ß·ÖÖ§Âß¼­
+        // å¦‚æœå¡«å†™äº†ç›®æ ‡åœºæ™¯åç§°ï¼Œå°±èµ°åˆ†æ”¯é€»è¾‘
         if (!string.IsNullOrEmpty(targetSceneName))
         {
-            Debug.Log($"[NextLevelDoor] ½øÈëÖ¸¶¨¹Ø¿¨: {targetSceneName}");
+            Debug.Log($"[NextLevelDoor] è¿›å…¥æŒ‡å®šå…³å¡: {targetSceneName}");
             LevelManager.Instance.LoadSpecificLevel(targetSceneName);
         }
-        // ·ñÔò°´ÕÕÀÏÂß¼­°´Ë³Ğò¼ÓÔØ
+        // å¦åˆ™æŒ‰ç…§è€é€»è¾‘æŒ‰é¡ºåºåŠ è½½
         else
         {
-            Debug.Log("[NextLevelDoor] ½øÈëÏÂÒ»¹Ø¿¨");
+            Debug.Log("[NextLevelDoor] è¿›å…¥ä¸‹ä¸€å…³å¡");
             LevelManager.Instance.LoadNextLevel();
         }
     }
 
     /// <summary>
-    /// ±»Ô¿³×³ÔµôÊ±µ÷ÓÃ£¬½âËø¸ÃÃÅ
+    /// è¢«é’¥åŒ™åƒæ‰æ—¶è°ƒç”¨ï¼Œè§£é”è¯¥é—¨
     /// </summary>
     public void UnlockDoor()
     {
         if (!isLocked) 
         {
-            Debug.LogWarning("[NextLevelDoor] ³¢ÊÔ½âËøÒÑ½âËøµÄÃÅ");
+            Debug.LogWarning("[NextLevelDoor] å°è¯•è§£é”å·²è§£é”çš„é—¨");
             return;
         }
         isLocked = false;
-        Debug.Log("[NextLevelDoor] ÃÅÒÑ½âËø");
+        Debug.Log("[NextLevelDoor] é—¨å·²è§£é”");
 
         if (unlockSound != null && audioSource != null)
         {
@@ -195,22 +195,22 @@ public class NextLevelDoor : MonoBehaviour
 
         if (lockIcon != null)
         {
-            // ´ò¶Ï´ı»úµÄQµ¯¶¯»­£¬²¢»Ö¸´Ä¬ÈÏ´óĞ¡×÷ÎªµôÂä»ù×¼
+            // æ‰“æ–­å¾…æœºçš„Qå¼¹åŠ¨ç”»ï¼Œå¹¶æ¢å¤é»˜è®¤å¤§å°ä½œä¸ºæ‰è½åŸºå‡†
             lockIcon.DOKill();
             lockIcon.localScale = initialLockScale;
 
             Sequence unlockSeq = DOTween.Sequence();
 
-            // 1. Ëø×óÓÒ¾çÁÒÕğ¶¯Ò»ÏÂ (Ä£Äâ½âËø)
+            // 1. é”å·¦å³å‰§çƒˆéœ‡åŠ¨ä¸€ä¸‹ (æ¨¡æ‹Ÿè§£é”)
             unlockSeq.Append(lockIcon.DOShakePosition(0.4f, strength: new Vector3(0.4f, 0, 0), vibrato: 30));
 
-            // 2. ÕğÍêÒÔºóËøÍùÏÂµôÂä
+            // 2. éœ‡å®Œä»¥åé”å¾€ä¸‹æ‰è½
             unlockSeq.Append(lockIcon.DOMoveY(lockIcon.position.y - 2f, 0.5f).SetEase(Ease.InCubic));
 
-            // 3. Í¬Ê±Ëø´øÓĞËõĞ¡µÄĞ§¹û
+            // 3. åŒæ—¶é”å¸¦æœ‰ç¼©å°çš„æ•ˆæœ
             unlockSeq.Join(lockIcon.DOScale(Vector3.zero, 0.5f).SetEase(Ease.InBack));
 
-            // 4. ³¹µ×Òş²Ø»ÙµôÕâ¸öËø
+            // 4. å½»åº•éšè—æ¯æ‰è¿™ä¸ªé”
             unlockSeq.OnComplete(() =>
             {
                 lockIcon.gameObject.SetActive(false);

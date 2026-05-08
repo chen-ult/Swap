@@ -2232,6 +2232,10 @@ PrefabInstance:
       value: 0.8125
       objectReference: {fileID: 0}
     - target: {fileID: 6340321090602113341, guid: 8f1325efc48a5ae4b802efc04c4dcf84, type: 3}
+      propertyPath: pressSound
+      value: 
+      objectReference: {fileID: 8300000, guid: c884f5c085ef4224f8ad22be30757122, type: 3}
+    - target: {fileID: 6340321090602113341, guid: 8f1325efc48a5ae4b802efc04c4dcf84, type: 3}
       propertyPath: stayPressed
       value: 1
       objectReference: {fileID: 0}
@@ -2312,6 +2316,10 @@ PrefabInstance:
       propertyPath: linkedPortal
       value: 
       objectReference: {fileID: 1886419039}
+    - target: {fileID: 131741447054286711, guid: c8b5bba98dfc0da42bbb1b11ef5cc064, type: 3}
+      propertyPath: portalInSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 956fbc208556ff54daf0c240f4c64201, type: 3}
     - target: {fileID: 1615563347070276700, guid: c8b5bba98dfc0da42bbb1b11ef5cc064, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.77
@@ -3196,6 +3204,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1300980908944594041, guid: 74736f8a5eeb0fc4f99d454c9146fc4b, type: 3}
+      propertyPath: activateSound
+      value: 
+      objectReference: {fileID: 8300000, guid: ca1f13ab06cb55e4592798a76d391049, type: 3}
     - target: {fileID: 3533269884698595899, guid: 74736f8a5eeb0fc4f99d454c9146fc4b, type: 3}
       propertyPath: m_Name
       value: checkpoint
@@ -3296,6 +3308,10 @@ PrefabInstance:
     - target: {fileID: 743279309880772734, guid: 78d12032473419147b49351079191a8b, type: 3}
       propertyPath: m_Name
       value: spring
+      objectReference: {fileID: 0}
+    - target: {fileID: 743279309880772734, guid: 78d12032473419147b49351079191a8b, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2805653964804459408, guid: 78d12032473419147b49351079191a8b, type: 3}
       propertyPath: bounceForce
@@ -3986,6 +4002,10 @@ PrefabInstance:
       propertyPath: linkedPortal
       value: 
       objectReference: {fileID: 2043107868}
+    - target: {fileID: 131741447054286711, guid: c8b5bba98dfc0da42bbb1b11ef5cc064, type: 3}
+      propertyPath: portalInSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 956fbc208556ff54daf0c240f4c64201, type: 3}
     - target: {fileID: 1615563347070276700, guid: c8b5bba98dfc0da42bbb1b11ef5cc064, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.71
@@ -4051,6 +4071,10 @@ PrefabInstance:
       propertyPath: linkedPortal
       value: 
       objectReference: {fileID: 2043107868}
+    - target: {fileID: 131741447054286711, guid: c8b5bba98dfc0da42bbb1b11ef5cc064, type: 3}
+      propertyPath: portalInSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 956fbc208556ff54daf0c240f4c64201, type: 3}
     - target: {fileID: 1615563347070276700, guid: c8b5bba98dfc0da42bbb1b11ef5cc064, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8.36
@@ -4139,6 +4163,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2447146637410070938, guid: b554a935a4007224695e2208440b1ff0, type: 3}
+      propertyPath: sfxVolume
+      value: 0.251
+      objectReference: {fileID: 0}
     - target: {fileID: 2447146637410070938, guid: b554a935a4007224695e2208440b1ff0, type: 3}
       propertyPath: splitSpeedThreshold
       value: 25
@@ -4305,6 +4333,10 @@ PrefabInstance:
       value: 0.8125
       objectReference: {fileID: 0}
     - target: {fileID: 6340321090602113341, guid: 8f1325efc48a5ae4b802efc04c4dcf84, type: 3}
+      propertyPath: pressSound
+      value: 
+      objectReference: {fileID: 8300000, guid: c884f5c085ef4224f8ad22be30757122, type: 3}
+    - target: {fileID: 6340321090602113341, guid: 8f1325efc48a5ae4b802efc04c4dcf84, type: 3}
       propertyPath: stayPressed
       value: 1
       objectReference: {fileID: 0}
@@ -4369,6 +4401,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3324413302783385582, guid: 325d188c663fd4f4b86af61004cc1f5e, type: 3}
+      propertyPath: groundLayer.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
     - target: {fileID: 3340919698543782142, guid: 325d188c663fd4f4b86af61004cc1f5e, type: 3}
       propertyPath: m_Name
       value: box
@@ -4399,7 +4435,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5395073040129858453, guid: 325d188c663fd4f4b86af61004cc1f5e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.41
+      value: -3.53
       objectReference: {fileID: 0}
     - target: {fileID: 5395073040129858453, guid: 325d188c663fd4f4b86af61004cc1f5e, type: 3}
       propertyPath: m_LocalPosition.z
