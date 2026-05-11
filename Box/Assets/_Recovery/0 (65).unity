@@ -546,42 +546,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: fakebutton
       objectReference: {fileID: 0}
-    - target: {fileID: 4472860968860557378, guid: da94243b9c8b87a4fbd7ed05be1924ba, type: 3}
-      propertyPath: m_TagString
-      value: RestartButton
-      objectReference: {fileID: 0}
-    - target: {fileID: 4997270332192275095, guid: da94243b9c8b87a4fbd7ed05be1924ba, type: 3}
-      propertyPath: ringRadius
-      value: 0.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4997270332192275095, guid: da94243b9c8b87a4fbd7ed05be1924ba, type: 3}
-      propertyPath: speedTextOffset.x
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4997270332192275095, guid: da94243b9c8b87a4fbd7ed05be1924ba, type: 3}
-      propertyPath: speedTextOffset.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5339633351949234063, guid: da94243b9c8b87a4fbd7ed05be1924ba, type: 3}
-      propertyPath: worldOffset.x
-      value: 7.17
-      objectReference: {fileID: 0}
-    - target: {fileID: 5339633351949234063, guid: da94243b9c8b87a4fbd7ed05be1924ba, type: 3}
-      propertyPath: worldOffset.y
-      value: 1.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5927957332955393840, guid: da94243b9c8b87a4fbd7ed05be1924ba, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.68
-      objectReference: {fileID: 0}
-    - target: {fileID: 5927957332955393840, guid: da94243b9c8b87a4fbd7ed05be1924ba, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.68
-      objectReference: {fileID: 0}
-    - target: {fileID: 5927957332955393840, guid: da94243b9c8b87a4fbd7ed05be1924ba, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.68
-      objectReference: {fileID: 0}
     - target: {fileID: 5927957332955393840, guid: da94243b9c8b87a4fbd7ed05be1924ba, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.11492
@@ -4119,6 +4083,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2026493380121082134, guid: 64cfc43f4bae26a458a2181e24077f9b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3711055284389963957, guid: 64cfc43f4bae26a458a2181e24077f9b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.30915
@@ -4158,6 +4126,14 @@ PrefabInstance:
     - target: {fileID: 3711055284389963957, guid: 64cfc43f4bae26a458a2181e24077f9b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4730799228338942125, guid: 64cfc43f4bae26a458a2181e24077f9b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5093669644820871243, guid: 64cfc43f4bae26a458a2181e24077f9b, type: 3}
+      propertyPath: pausePanelBg
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5093669644820871243, guid: 64cfc43f4bae26a458a2181e24077f9b, type: 3}
       propertyPath: followCameraButton

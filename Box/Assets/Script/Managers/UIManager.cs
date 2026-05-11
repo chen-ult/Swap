@@ -42,6 +42,11 @@ public class UIManager : MonoBehaviour
     public Button pauseRestartButton;
     public float pausePanelAnimDuration = 0.35f;
 
+    // ====================== 【新增：屏幕暂停按钮】 ======================
+    [Header("屏幕菜单按钮")]
+    public Button screenPauseButton;
+    // ==================================================================
+
     [Header("开始面板")]
     public GameObject startPanel;
     public TextMeshProUGUI startTitleText;
@@ -89,6 +94,8 @@ public class UIManager : MonoBehaviour
     public Color timeHighlightColor = Color.yellow;
     public float timeHighlightPeriod = 1.2f;
 
+    public FollowCameraPauseButton followCameraButton; // 拖入场景中的按钮
+
     private AudioSource uiAudio;
 
     private DG.Tweening.Core.TweenerCore<float, float, DG.Tweening.Plugins.Options.FloatOptions> titleGradientTweenRef;
@@ -121,7 +128,6 @@ public class UIManager : MonoBehaviour
                 starImages = starContainer.GetComponentsInChildren<Image>();
             }
 
-            // 自动添加音效播放器
             uiAudio = GetComponent<AudioSource>();
             if (uiAudio == null)
             {
@@ -152,12 +158,22 @@ public class UIManager : MonoBehaviour
             {
                 startTitleText.gameObject.SetActive(false);
             }
+            // ====================== 【绑定屏幕暂停按钮】 ======================
+            if (screenPauseButton != null)
+            {
+                screenPauseButton.onClick.RemoveListener(OnScreenPauseButtonClicked);
+                screenPauseButton.onClick.AddListener(OnScreenPauseButtonClicked);
+            }
+            // ==================================================================
         }
         else
         {
             Destroy(gameObject);
             return;
         }
+
+        
+
     }
 
     private void Start()
@@ -169,6 +185,7 @@ public class UIManager : MonoBehaviour
         }
 
         FindAndSubscribeToPlayer();
+        FindSceneButtons();
 
         try
         {
@@ -186,6 +203,13 @@ public class UIManager : MonoBehaviour
             }
         }
         catch { }
+
+        // 初始确保跟随按钮隐藏但不销毁
+        if (followCameraButton != null)
+        {
+            followCameraButton.gameObject.SetActive(true);
+            followCameraButton.transform.localScale = Vector3.zero;
+        }
     }
 
     private IEnumerator WaitForTransitionThenShowStart()
@@ -221,7 +245,7 @@ public class UIManager : MonoBehaviour
         catch { }
     }
 
-    public bool isPaused { get; private set; }= false;
+    public bool isPaused { get; private set; } = false;
     private bool isStartMenuVisible = false;
     public bool IsStartMenuVisible => isStartMenuVisible;
 
@@ -244,7 +268,15 @@ public class UIManager : MonoBehaviour
 
     private void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode mode)
     {
+        if (endSequenceCoroutine != null)
+        {
+            StopCoroutine(endSequenceCoroutine);
+            endSequenceCoroutine = null;
+        }
+
         FindAndSubscribeToPlayer();
+        FindSceneButtons();
+
         currentStars = 0;
         UpdateStarUI();
 
@@ -255,6 +287,46 @@ public class UIManager : MonoBehaviour
         if (thanksTimeText != null) DOTween.Kill(thanksTimeText);
         if (endImagePanel != null) DOTween.Kill(endImagePanel);
         if (thanksPanel != null) DOTween.Kill(thanksPanel);
+    }
+
+    private void FindSceneButtons()
+    {
+        try
+        {
+            // 1. 自动寻找跟随相机的按钮组件
+            FollowCameraPauseButton[] followBtns = Resources.FindObjectsOfTypeAll<FollowCameraPauseButton>();
+            foreach (var btn in followBtns)
+            {
+                if (btn.gameObject.scene.isLoaded) // 确保是当前场景里的而不是预制体
+                {
+                    followCameraButton = btn;
+                    break;
+                }
+            }
+
+            // 2. 自动寻找屏幕上的暂停按钮（你可以把它命名为 ScreenPauseButton 或使用 Tag）
+            GameObject screenBtnObj = GameObject.Find("ScreenPauseButton");
+            try 
+            {
+                if (screenBtnObj == null) screenBtnObj = GameObject.FindWithTag("PauseButton"); // 备用Tag查找（如果Tag没注册会报错，用个try保护）
+            } catch { }
+
+            if (screenBtnObj != null)
+            {
+                screenPauseButton = screenBtnObj.GetComponent<Button>();
+            }
+
+            // 重新绑定屏幕暂停按钮事件
+            if (screenPauseButton != null)
+            {
+                screenPauseButton.onClick.RemoveListener(OnScreenPauseButtonClicked);
+                screenPauseButton.onClick.AddListener(OnScreenPauseButtonClicked);
+            }
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogWarning("FindSceneButtons 出错: " + e.Message);
+        }
     }
 
     private void UpdateStarUI()
@@ -357,12 +429,18 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    private Coroutine endSequenceCoroutine;
+
     public void ShowEndSequence(float elapsedSeconds, float firstImageDuration = 2f)
     {
         if (endImagePanel == null && thanksPanel == null)
             return;
 
-        StartCoroutine(ShowEndSequenceRoutine(elapsedSeconds, firstImageDuration));
+        if (endSequenceCoroutine != null)
+        {
+            StopCoroutine(endSequenceCoroutine);
+        }
+        endSequenceCoroutine = StartCoroutine(ShowEndSequenceRoutine(elapsedSeconds, firstImageDuration));
     }
 
     private IEnumerator ShowEndSequenceRoutine(float elapsedSeconds, float firstImageDuration)
@@ -491,7 +569,6 @@ public class UIManager : MonoBehaviour
         yield break;
     }
 
-    // 播放按钮音效（全局共用）
     private void PlayButtonSound()
     {
         if (uiAudio != null && buttonClickSound != null)
@@ -502,6 +579,12 @@ public class UIManager : MonoBehaviour
     {
         if (pausePanel == null) return;
         PlayButtonSound();
+
+        // ✅✅✅ 【加在这里！一打开暂停就显示按钮！】✅✅✅
+        if (followCameraButton != null)
+        {
+            followCameraButton.ShowButton();
+        }
 
         pausePanel.SetActive(true);
         pausePanel.transform.SetAsLastSibling();
@@ -537,9 +620,8 @@ public class UIManager : MonoBehaviour
             pauseRestartButton.onClick.RemoveListener(OnPauseRestartButtonPressed);
             pauseRestartButton.onClick.AddListener(OnPauseRestartButtonPressed);
 
-            // 检查是否有存档（读取CheckpointScene）
             bool hasCheckpoint = !string.IsNullOrEmpty(PlayerPrefs.GetString("CheckpointScene", ""));
-            pauseRestartButton.interactable = hasCheckpoint; // 无存档则禁用按钮
+            pauseRestartButton.interactable = hasCheckpoint;
         }
 
         DOVirtual.DelayedCall(pausePanelAnimDuration * 0.5f, () =>
@@ -561,6 +643,8 @@ public class UIManager : MonoBehaviour
                     b3.localScale = Vector3.zero;
                     b3.DOKill();
                     b3.DOScale(Vector3.one, 0.25f).SetEase(Ease.OutBack).SetUpdate(true);
+
+                    
                 }).SetUpdate(true);
             }
             if (pauseQuitButton != null)
@@ -577,8 +661,21 @@ public class UIManager : MonoBehaviour
         }).SetUpdate(true);
 
         isPaused = true;
-        Time.timeScale = 0f;
     }
+
+    // ====================== 【屏幕暂停按钮点击事件】 ======================
+    private void OnScreenPauseButtonClicked()
+    {
+        if (isPaused)
+        {
+            HidePauseMenu();
+        }
+        else
+        {
+            ShowPauseMenu();
+        }
+    }
+    // ====================================================================
 
     public void ShowStartMenu()
     {
@@ -662,7 +759,7 @@ public class UIManager : MonoBehaviour
         if (pausePanel == null) return;
         PlayButtonSound();
 
-        isPaused = false;
+
         Time.timeScale = 1f;
 
         var t = pausePanel.transform;
@@ -672,9 +769,16 @@ public class UIManager : MonoBehaviour
             pausePanel.SetActive(false);
         });
 
+        // ✅ 只在暂停时才隐藏按钮
+        if (isPaused && followCameraButton != null)
+        {
+            followCameraButton.HideButton();
+        }
+
         if (pauseResumeButton != null) pauseResumeButton.gameObject.SetActive(false);
         if (pauseQuitButton != null) pauseQuitButton.gameObject.SetActive(false);
         if (pauseRestartButton != null) pauseRestartButton.gameObject.SetActive(false);
+        isPaused = false;
     }
 
     private void OnStartButtonPressed()
@@ -691,6 +795,7 @@ public class UIManager : MonoBehaviour
         {
             GameTimer.Instance.StartTimer();
         }
+
     }
 
     private void OnQuitButtonPressed()
@@ -735,12 +840,10 @@ public class UIManager : MonoBehaviour
         });
     }
 
-    // 暂停面板重启按钮点击事件 —— 已修复面板不消失问题
     private void OnPauseRestartButtonPressed()
     {
         PlayButtonSound();
 
-        // 按钮点击动画
         if (pauseRestartButton != null)
         {
             var t = pauseRestartButton.transform;
@@ -748,24 +851,18 @@ public class UIManager : MonoBehaviour
             t.DOPunchScale(new Vector3(0.12f, 0.12f, 0), 0.2f, 8, 1f);
         }
 
-        
-        // ⬇⬇⬇ 核心修复：先隐藏暂停面板，等动画结束再执行重启逻辑 ⬇⬇⬇
         HidePauseMenu();
 
-        
-        // 等待面板隐藏动画完成（0.2秒，和你HidePauseMenu的动画时间一致）
         DOVirtual.DelayedCall(0.2f, () =>
         {
-            // 恢复游戏时间
             isPaused = false;
             Time.timeScale = 1f;
 
-            // 执行回到存档点
             if (LevelManager.Instance != null)
             {
                 LevelManager.Instance.RespawnAtCheckpoint();
             }
-        }).SetUpdate(true); // 强制不受时间暂停影响
+        }).SetUpdate(true);
     }
 
     private IEnumerator TypewriteText(TextMeshProUGUI textComp, string full, float duration)

@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
@@ -10,6 +10,9 @@ public class LevelManager : MonoBehaviour
 
     private bool isTransitioning = false;
     public bool IsTransitioning => isTransitioning;
+
+    // å…¨å±€å­˜æ¡£ç‚¹é€Ÿåº¦ï¼ˆåœºæ™¯åˆ‡æ¢ä¸ä¸¢å¤±ï¼‰
+    public Vector2 storedCheckpointVelocity;
 
     private void Awake()
     {
@@ -35,11 +38,11 @@ public class LevelManager : MonoBehaviour
         if (isTransitioning) return;
 
         int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
-        
+
         if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
             StartCoroutine(TransitionToScene(nextSceneIndex));
         else
-            Debug.Log("ÒÑ¾­ÊÇ×îºóÒ»¹ØÁË£¡");
+            Debug.Log("å·²ç»æ˜¯æœ€åä¸€å…³äº†ï¼");
     }
 
     public void LoadSpecificLevel(string sceneName)
@@ -56,8 +59,6 @@ public class LevelManager : MonoBehaviour
 
     public void RespawnAtCheckpoint()
     {
-        
-
         if (isTransitioning) return;
 
         string savedScene = PlayerPrefs.GetString("CheckpointScene", "");
@@ -68,28 +69,28 @@ public class LevelManager : MonoBehaviour
             RestartCurrentLevel();
     }
 
-    // --- ºËĞÄĞ­³ÌÂß¼­£¨°şÀëÁËUI£¬Ö±½Óºô½ĞUIManager£© ---
+    // --- æ ¸å¿ƒåç¨‹é€»è¾‘ï¼ˆå‰¥ç¦»äº†UIï¼Œç›´æ¥å‘¼å«UIManagerï¼‰ ---
 
     private IEnumerator TransitionToScene(int sceneIndex)
     {
         isTransitioning = true;
 
-        // ¿ç³¡¾°ÖÕ¼«±£»¤£ºÔÚÀÏ³¡¾°±»°ÎµôÇ°£¬Ç¿ĞĞÉ±µô´ËÊ±ËùÓĞÕıÔÚÈ«³¡ÔË×÷µÄ DOTween
+        // è·¨åœºæ™¯ç»ˆæä¿æŠ¤ï¼šåœ¨è€åœºæ™¯è¢«æ‹”æ‰å‰ï¼Œå¼ºè¡Œæ€æ‰æ­¤æ—¶æ‰€æœ‰æ­£åœ¨å…¨åœºè¿ä½œçš„ DOTween
         DOTween.KillAll();
 
-        // 1. ºô½Ğ UI ¹ÜÀíÆ÷£ºÆÁÄ»±äºÚ
+        // 1. å‘¼å« UI ç®¡ç†å™¨ï¼šå±å¹•å˜é»‘
         yield return UIManager.Instance.FadeOutRoutine();
 
-        // 2. ¼ÓÔØĞÂ³¡¾°
+        // 2. åŠ è½½æ–°åœºæ™¯
         SceneManager.LoadScene(sceneIndex);
 
-        // ±ØĞëµÈ´ıÁ½Ö¡£¬È·±£¾É³¡¾°ÎïÌåÒÑ±»Ïú»Ù£¬ĞÂ³¡¾°ÎïÌåÒÑÍêÈ«³õÊ¼»¯
-        yield return null; yield return null; 
+        // å¿…é¡»ç­‰å¾…ä¸¤å¸§ï¼Œç¡®ä¿æ—§åœºæ™¯ç‰©ä½“å·²è¢«é”€æ¯ï¼Œæ–°åœºæ™¯ç‰©ä½“å·²å®Œå…¨åˆå§‹åŒ–
+        yield return null; yield return null;
 
         MovePlayerToSpawnPoint();
         SnapCinemachineCamera();
 
-        // 3. ºô½Ğ UI ¹ÜÀíÆ÷£ºÈç¹ûÊÇ level_0 ÏÈÏÔÊ¾¿ªÊ¼²Ëµ¥ÒÔ¸²¸Ç³¡¾°£¬ÔÙ×öµ­Èë
+        // 3. å‘¼å« UI ç®¡ç†å™¨ï¼šå¦‚æœæ˜¯ level_0 å…ˆæ˜¾ç¤ºå¼€å§‹èœå•ä»¥è¦†ç›–åœºæ™¯ï¼Œå†åšæ·¡å…¥
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "level_0")
         {
             if (UIManager.Instance != null)
@@ -109,8 +110,8 @@ public class LevelManager : MonoBehaviour
 
         SceneManager.LoadScene(sceneName);
 
-        // ±ØĞëµÈ´ıÁ½Ö¡
-        yield return null; yield return null; 
+        // å¿…é¡»ç­‰å¾…ä¸¤å¸§
+        yield return null; yield return null;
 
         MovePlayerToSpawnPoint();
         SnapCinemachineCamera();
@@ -135,8 +136,8 @@ public class LevelManager : MonoBehaviour
 
         SceneManager.LoadScene(sceneName);
 
-        // ±ØĞëµÈ´ıÁ½Ö¡£¬ĞÂ³¡¾°ºÍĞÂÍæ¼Ò²ÅËã¼ÓÔØÍê±Ï
-        yield return null; yield return null; 
+        // å¿…é¡»ç­‰å¾…ä¸¤å¸§ï¼Œæ–°åœºæ™¯å’Œæ–°ç©å®¶æ‰ç®—åŠ è½½å®Œæ¯•
+        yield return null;
 
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
@@ -146,19 +147,26 @@ public class LevelManager : MonoBehaviour
             player.transform.position = new Vector2(posX, posY);
 
             Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
-            if (rb != null) rb.linearVelocity = Vector2.zero;
+            if (rb != null)
+            {
+                rb.linearVelocity = Vector2.zero;
+                rb.linearVelocity = storedCheckpointVelocity;
+            }
         }
 
         SnapCinemachineCamera();
 
         yield return UIManager.Instance.FadeInRoutine();
 
+        // å¤æ´»å®Œæˆåï¼Œè°ƒç”¨å­˜æ¡£ç‚¹å›è°ƒ
+        FindAnyObjectByType<ClickableCheckpointSprite>()?.OnPlayerRespawnedAtCheckpoint();
+
         isTransitioning = false;
     }
 
     private void MovePlayerToSpawnPoint()
     {
-        GameObject spawnPoint = GameObject.Find("SpawnPoint"); 
+        GameObject spawnPoint = GameObject.Find("SpawnPoint");
         GameObject player = GameObject.FindGameObjectWithTag("Player");
 
         if (spawnPoint != null && player != null)
@@ -171,7 +179,7 @@ public class LevelManager : MonoBehaviour
 
     private void SnapCinemachineCamera()
     {
-        // ÖØÖÃÎïÀíÊ±¼äÖáÒÔ·ÀÊÜ×Óµ¯Ê±¼ä²ĞÁôÓ°Ïìµ¼ÖÂÏà»úÂß¼­ËÀ»ú
+        // é‡ç½®ç‰©ç†æ—¶é—´è½´ä»¥é˜²å—å­å¼¹æ—¶é—´æ®‹ç•™å½±å“å¯¼è‡´ç›¸æœºé€»è¾‘æ­»æœº
         Time.timeScale = 1f;
         Time.fixedDeltaTime = 0.02f;
 
@@ -184,14 +192,14 @@ public class LevelManager : MonoBehaviour
             string typeName = b.GetType().Name;
             if (typeName == "CinemachineVirtualCamera" || typeName == "CinemachineCamera")
             {
-                // 1. Ç¿ÖÆ½«ĞÂÍæ¼ÒÉèÎª¸úËæÄ¿±ê£¨·ÀÖ¹Ëü»¹×·×Ù×ÅÉÏÒ»¾Ö±»Ïú»ÙµÄÀÏÍæ¼ÒÊ¬Ìå£©
+                // 1. å¼ºåˆ¶å°†æ–°ç©å®¶è®¾ä¸ºè·Ÿéšç›®æ ‡ï¼ˆé˜²æ­¢å®ƒè¿˜è¿½è¸ªç€ä¸Šä¸€å±€è¢«é”€æ¯çš„è€ç©å®¶å°¸ä½“ï¼‰
                 var followProp = b.GetType().GetProperty("Follow");
                 if (followProp != null)
                 {
                     followProp.SetValue(b, p.transform);
                 }
 
-                // 2. ÇĞ¶ÏÉÏÒ»Ö¡µÄ¼ÇÂ¼£¬Ç¿ÖÆ±¾Ö¡·¢ÉúÌø±ä£¨¶ø²»ÊÇ´øÓĞÑÓ³ÙÈ¥»ºÂıÒÆ¶¯¹ıÈ¥£©
+                // 2. åˆ‡æ–­ä¸Šä¸€å¸§çš„è®°å½•ï¼Œå¼ºåˆ¶æœ¬å¸§å‘ç”Ÿè·³å˜ï¼ˆè€Œä¸æ˜¯å¸¦æœ‰å»¶è¿Ÿå»ç¼“æ…¢ç§»åŠ¨è¿‡å»ï¼‰
                 var prop = b.GetType().GetProperty("PreviousStateIsValid");
                 if (prop != null)
                 {
@@ -203,25 +211,25 @@ public class LevelManager : MonoBehaviour
 
     public void CompleteLevel(string thisLevelName, string nextLevelName, int collectedStars)
     {
-        // ÓÎÏ·Í¨¹Ø´ó½áËã¼ÇÂ¼Âß¼­
+        // æ¸¸æˆé€šå…³å¤§ç»“ç®—è®°å½•é€»è¾‘
 
-        // 1. ½âËøÏÂÒ»¹Ø£¡°ÑÏÂÒ»¹ØµÄ×Ö·û´®±ê¼ÇÎª³¹µ×´òÍ¨
+        // 1. è§£é”ä¸‹ä¸€å…³ï¼æŠŠä¸‹ä¸€å…³çš„å­—ç¬¦ä¸²æ ‡è®°ä¸ºå½»åº•æ‰“é€š
         if (!string.IsNullOrEmpty(nextLevelName))
         {
             PlayerPrefs.SetInt("Unlocked_" + nextLevelName, 1);
         }
 
-        // 2. ¶Ô±ÈÕâ¹ØÀúÊ·ÉÏÄÃµ½µÄ×î¶àĞÇĞÇÊı²¢±£´æ¸ß·Ö
+        // 2. å¯¹æ¯”è¿™å…³å†å²ä¸Šæ‹¿åˆ°çš„æœ€å¤šæ˜Ÿæ˜Ÿæ•°å¹¶ä¿å­˜é«˜åˆ†
         int currentHighScore = PlayerPrefs.GetInt("Stars_" + thisLevelName, 0);
         if (collectedStars > currentHighScore)
         {
             PlayerPrefs.SetInt("Stars_" + thisLevelName, collectedStars);
         }
 
-        // ±£´æ½ø´ÅÅÌ
+        // ä¿å­˜è¿›ç£ç›˜
         PlayerPrefs.Save();
 
-        // ²¥Íê»òÕß´æÍêÖ±½ÓÌø×ªÏÂÒ»¹Ø
+        // æ’­å®Œæˆ–è€…å­˜å®Œç›´æ¥è·³è½¬ä¸‹ä¸€å…³
         if (!string.IsNullOrEmpty(nextLevelName))
         {
             LoadSpecificLevel(nextLevelName);
@@ -230,11 +238,11 @@ public class LevelManager : MonoBehaviour
 
     private void Update()
     {
-        if (Keyboard.current != null && Keyboard.current.deleteKey.wasPressedThisFrame) 
+        if (Keyboard.current != null && Keyboard.current.deleteKey.wasPressedThisFrame)
         {
             PlayerPrefs.DeleteAll();
             PlayerPrefs.Save();
-            Debug.Log("ÒÑÔÚÕæÊµÓÎÏ·ÖĞ³É¹¦É¾³ıËùÓĞ´æµµÊı¾İ£¡");
+            Debug.Log("å·²åœ¨çœŸå®æ¸¸æˆä¸­æˆåŠŸåˆ é™¤æ‰€æœ‰å­˜æ¡£æ•°æ®ï¼");
         }
     }
 }
