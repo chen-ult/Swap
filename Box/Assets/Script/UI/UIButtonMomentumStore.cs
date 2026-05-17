@@ -5,6 +5,14 @@ using DG.Tweening;
 [RequireComponent(typeof(Rigidbody2D))]
 public class UIButtonMomentumStore : MonoBehaviour
 {
+    [Header("视觉效果")]
+    [Tooltip("子弹时间下的高亮颜色")]
+    public Color bulletTimeColor = Color.yellow;
+    [Tooltip("选中时的颜色")]
+    public Color selectedColor = Color.cyan;
+    [Tooltip("正常颜色")]
+    public Color normalColor = Color.white;
+
     [Header("储速设置")]
     public float maxStoredSpeed = 50f;
     public float minShowSpeed = 0.5f;
@@ -25,6 +33,12 @@ public class UIButtonMomentumStore : MonoBehaviour
     private float lastSpeed = -1f;
     private Sequence textBounceSeq;
 
+    private UnityEngine.UI.Image btnImage;
+    private TMPro.TextMeshProUGUI tmpText;
+
+    private bool isInBulletTime = false;
+    private bool isCurrentlySelected = false;
+
     void Awake()
     {
         // UI层级关键设置
@@ -32,29 +46,50 @@ public class UIButtonMomentumStore : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         rb.bodyType = RigidbodyType2D.Kinematic;
 
+        btnImage = GetComponent<UnityEngine.UI.Image>();
+        tmpText = GetComponentInChildren<TMPro.TextMeshProUGUI>();
+
         // 初始化文字、圆环箭头（完全照搬传送门）
         InitSpeedText();
         InitRingAndArrow();
+    }
+
+    private void OnEnable()
+    {
+        MomentumSwapManager.OnBulletTimeToggled += HandleBulletTimeToggle;
+    }
+
+    private void OnDisable()
+    {
+        MomentumSwapManager.OnBulletTimeToggled -= HandleBulletTimeToggle;
+    }
+
+    private void HandleBulletTimeToggle(bool active)
+    {
+        isInBulletTime = active;
+        UpdateColor();
+    }
+
+    private void UpdateColor()
+    {
+        Color c = normalColor;
+        if (isCurrentlySelected) c = selectedColor;
+        else if (isInBulletTime) c = bulletTimeColor;
+
+        if (btnImage != null) btnImage.color = c;
+        if (tmpText != null) tmpText.color = c;
     }
 
     void Update()
     {
         bool hitMaxLimitThisFrame = false;
 
-        // ========== 和传送门完全一样的储速核心逻辑 ==========
-        if (rb != null && rb.linearVelocity.magnitude > 0.05f)
+        // 【废弃每帧自然物理累加，改用 IMomentumSwappable 确切获取系统传递的动量】
+        if (storedVelocity.magnitude >= maxStoredSpeed)
         {
-            Vector2 incomingVel = rb.linearVelocity;
-            storedVelocity += incomingVel;
-
-            if (storedVelocity.magnitude >= maxStoredSpeed)
-            {
-                hitMaxLimitThisFrame = true;
-                storedVelocity = Vector2.ClampMagnitude(storedVelocity, maxStoredSpeed);
-            }
-            rb.linearVelocity = Vector2.zero;
+            hitMaxLimitThisFrame = true;
+            storedVelocity = Vector2.ClampMagnitude(storedVelocity, maxStoredSpeed);
         }
-        // ====================================================
 
         UpdateVisual(hitMaxLimitThisFrame);
     }
@@ -189,5 +224,31 @@ public class UIButtonMomentumStore : MonoBehaviour
     public void ClearStoredVelocity()
     {
         storedVelocity = Vector2.zero;
+    }
+
+    // ====== IMomentumSwappable 接口实现 ======
+    public Rigidbody2D MomentumRigidbody => rb;
+
+    public void ApplyMomentum(Vector2 momentum)
+    {
+        if (momentum.magnitude < 0.1f) return;
+
+        storedVelocity = momentum;
+        rb.linearVelocity = Vector2.zero; // 消耗掉附在本体刚体上的实际物理动量
+
+        FlashSuccess();
+    }
+
+    public void SetSelectedVisual(bool isSelected)
+    {
+        isCurrentlySelected = isSelected;
+        UpdateColor();
+    }
+
+    public void FlashSuccess()
+    {
+        transform.DOKill();
+        transform.localScale = Vector3.one;
+        transform.DOPunchScale(new Vector3(0.15f, 0.15f, 0), 0.3f, 5, 1f);
     }
 }

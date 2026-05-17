@@ -118,6 +118,15 @@ public partial class @PlayerInputSet: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Attract"",
+                    ""type"": ""Button"",
+                    ""id"": ""0d6d0cc2-fd24-4365-8da7-c0942fea6070"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -197,6 +206,28 @@ public partial class @PlayerInputSet: IInputActionCollection2, IDisposable
                     ""action"": ""Close Line"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6202abe2-8929-460a-97da-5ca315c4123b"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attract"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9bf0cd95-5a26-4319-ac25-b6de28b6e8c2"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard & Mouse"",
+                    ""action"": ""Attract"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -225,6 +256,7 @@ public partial class @PlayerInputSet: IInputActionCollection2, IDisposable
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_CloseLine = m_Player.FindAction("Close Line", throwIfNotFound: true);
+        m_Player_Attract = m_Player.FindAction("Attract", throwIfNotFound: true);
     }
 
     ~@PlayerInputSet()
@@ -308,6 +340,7 @@ public partial class @PlayerInputSet: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_CloseLine;
+    private readonly InputAction m_Player_Attract;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -331,6 +364,10 @@ public partial class @PlayerInputSet: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/CloseLine".
         /// </summary>
         public InputAction @CloseLine => m_Wrapper.m_Player_CloseLine;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/Attract".
+        /// </summary>
+        public InputAction @Attract => m_Wrapper.m_Player_Attract;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -366,6 +403,9 @@ public partial class @PlayerInputSet: IInputActionCollection2, IDisposable
             @CloseLine.started += instance.OnCloseLine;
             @CloseLine.performed += instance.OnCloseLine;
             @CloseLine.canceled += instance.OnCloseLine;
+            @Attract.started += instance.OnAttract;
+            @Attract.performed += instance.OnAttract;
+            @Attract.canceled += instance.OnAttract;
         }
 
         /// <summary>
@@ -386,6 +426,9 @@ public partial class @PlayerInputSet: IInputActionCollection2, IDisposable
             @CloseLine.started -= instance.OnCloseLine;
             @CloseLine.performed -= instance.OnCloseLine;
             @CloseLine.canceled -= instance.OnCloseLine;
+            @Attract.started -= instance.OnAttract;
+            @Attract.performed -= instance.OnAttract;
+            @Attract.canceled -= instance.OnAttract;
         }
 
         /// <summary>
@@ -460,5 +503,12 @@ public partial class @PlayerInputSet: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnCloseLine(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Attract" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnAttract(InputAction.CallbackContext context);
     }
 }

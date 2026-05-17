@@ -82,6 +82,15 @@ public class ClickableCheckpointSprite : MonoBehaviour, IMomentumSwappable
         }
 
         CreateRingAndArrowLines();
+        SyncVelocityFromLevelManager();
+    }
+
+    // 新增：从LevelManager同步速度（跨场景用）
+    private void SyncVelocityFromLevelManager()
+    {
+        if (LevelManager.Instance == null) return;
+        storedVelocity = LevelManager.Instance.storedCheckpointVelocity;
+        hasStoredVelocity = storedVelocity.magnitude >= minShowSpeed;
     }
 
     private void Start()
@@ -117,6 +126,7 @@ public class ClickableCheckpointSprite : MonoBehaviour, IMomentumSwappable
     {
         RecreateVisualElements();
         CheckCheckpointState();
+        SyncVelocityFromLevelManager();
         UpdateArrowVisibility();
     }
 
@@ -178,6 +188,7 @@ public class ClickableCheckpointSprite : MonoBehaviour, IMomentumSwappable
 
     public void UpdateArrowVisibility()
     {
+        SyncVelocityFromLevelManager();
         if (ringLine == null || arrowLine == null) return;
 
         // 关键：从按钮获取真实显示状态

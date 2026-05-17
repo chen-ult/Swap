@@ -1,21 +1,19 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Xml;
-using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using DG.Tweening;
 
 public class Player : Entity
 {
-    public static event Action OnPlayerDeath;//��������¼�
+    public static event Action OnPlayerDeath;
 
     public PlayerInputSet input;
 
     [Header("Audio / SFX")]
     public AudioSource audioSource;
-    [Tooltip("ר�ýŲ���Դ��������ֹͣ�ƶ�ʱ����ֹͣ�Ų�����Ӱ��������Ч")]
+    [Tooltip("专用脚步声源，确保停止移动时停止脚步声，音效独立")]
     public AudioSource footstepSource;
     public AudioClip sfx_PlayerJump;
     public AudioClip sfx_PlayerLand;
@@ -25,6 +23,7 @@ public class Player : Entity
     public AudioClip sfx_SmallBounce;
     public AudioClip sfx_Footstep;
     [Range(0f, 1f)] public float sfxVolume = 1f;
+
     [Header("Footstep")]
     [SerializeField] private float stepInterval = 0.35f;
     public float StepInterval => stepInterval;
@@ -38,43 +37,70 @@ public class Player : Entity
     public Player_DeadState deadState { get; private set; }
     #endregion
 
-
-    #region �ƶ�����
-    [Header("------------�ƶ�����------------")]
-    public float movespeed;//�ƶ��ٶ�
-    public float jumpforce = 5;//��Ծ��
-    public Vector2 wallJumpForce;//ǽ����Ծ��
+    #region 移动参数
+    [Header("------------移动参数------------")]
+    public float movespeed;
+    public float jumpforce = 5;
+    public Vector2 wallJumpForce;
 
     [Range(0f, 1f)]
-    public float inAirMoveMultiplier = .7f;//�����ƶ�����
+    public float inAirMoveMultiplier = .7f;
     [Range(0f, 1f)]
-    public float wallSlideMultiplier = .3f;//ǽ�ڻ��б���
+    public float wallSlideMultiplier = .3f;
 
-    [Header("��̲���")]
-    public float dashDuration = .25f;//��̳���ʱ��
-    public float dashSpeed = 20;//����ٶ�
+    [Header("冲刺")]
+    public float dashDuration = .25f;
+    public float dashSpeed = 20;
 
-    public Vector2 moveInput { get; private set; }//�ƶ�����
+    public Vector2 moveInput { get; private set; }
     #endregion
 
     private Collider2D col;
-    public LayerMask obstacleLayer; // ���ڼ������Ƿ񱻿���ǽ��������
+    public LayerMask obstacleLayer;
 
     [Space(10)]
-    [Header("ʷ��ķ���ѻ���")]
-    public float splitSpeedThreshold = 15f; // ײ��ǽ��������Ҫ�ﵽ����ٶȲŻᴥ������
-    public bool isSplit = false; // �Ƿ��Ѿ����ڷ���״̬
-    public float splitBounceForce = 12f; // ���Ѻ����ϵ�����
+    [Header("分裂与粘液克隆")]
+    public float splitSpeedThreshold = 15f;
+    public bool isSplit = false;
+    public float splitBounceForce = 12f;
 
-    [Tooltip("���ѷ�����Ԥ���壨������Ŀ�����ú�һ������SlimeClone�ű���Ԥ���岢����˲�λ��")]
+    [Tooltip("分裂出来的粘液克隆预制体")]
     public GameObject slimeClonePrefab;
 
-    [Tooltip("���Ѻ��������ű�����0.5����һ�룬���̫С���Ե�Ϊ0.7���ң�")]
+    [Tooltip("分裂后玩家的缩放比例，建议0.7")]
     public float splitScaleMultiplier = 0.7f;
 
-    private Vector3 originalScale; // ���ԭʼ��С
+    private Vector3 originalScale;
 
-    // �������޸������ṩ���ⲿ�����Ŷ�ȡ������׼��С�ķ�������ֹ��ή�����ŵ���һֱ�м���
+    // ====================== 【吸引圈设置 · 只有圈动】 ======================
+    [Header("SlimeClone 吸引设置")]
+    public float attractSpeed = 10f;
+    public float attractRadius = 4f;
+    public Color attractLineColor = Color.cyan;
+    public float attractLineWidth = 0.12f;
+
+    [Header("虚线材质（拖入你做好的材质）")]
+    public Material dashedCircleMaterial;
+
+    [Header("动态效果（圈的，不是玩家）")]
+    public float breathScale = 0.15f;
+    public float breathSpeed = 2f;
+    public float rotateSpeed = 15f;
+    public float fadeDuration = 0.2f;
+    public float dashDensity = 8f;
+
+    private bool isAttracting;
+    public bool IsAttracting => isAttracting;
+    public Vector3 PlayerPos => transform.position;
+
+    private LineRenderer attractCircleLine;
+    private Transform circleTrans;   // 圈的独立Transform！！！
+    private readonly int circlePoints = 180;
+    private Sequence circleAnimSeq;
+    private Tween fadeTween;
+    private bool wasAttracting = false;
+    // ======================================================================
+
     public Vector3 GetOriginalScale()
     {
         return originalScale;
@@ -90,8 +116,6 @@ public class Player : Entity
         originalScale = transform.localScale;
         col = GetComponent<Collider2D>();
 
-
-
         idleState = new Player_IdleState(this, stateMachine, "idle");
         moveState = new Player_MoveState(this, stateMachine, "move");
         jumpState = new Player_JumpState(this, stateMachine, "jumpFall");
@@ -99,7 +123,6 @@ public class Player : Entity
         fallendState = new Player_FallEndState(this, stateMachine, "fallend");
         deadState = new Player_DeadState(this, stateMachine, "dead");
 
-        // prepare audio source
         if (audioSource == null)
         {
             audioSource = GetComponent<AudioSource>();
@@ -109,10 +132,9 @@ public class Player : Entity
                 audioSource.playOnAwake = false;
             }
         }
-        // prepare dedicated footstep source
+
         if (footstepSource == null)
         {
-            // try find child named FootstepSource first
             footstepSource = transform.Find("FootstepSource")?.GetComponent<AudioSource>();
             if (footstepSource == null)
             {
@@ -123,22 +145,91 @@ public class Player : Entity
             }
         }
 
+        // ====================== 虚线圈初始化：独立物体！！ ======================
+        GameObject lineObj = new GameObject("AttractCircle");
+        lineObj.transform.SetParent(transform, false);
+        lineObj.transform.localPosition = Vector3.zero;
+        lineObj.transform.localScale = Vector3.one;
+        circleTrans = lineObj.transform;  // 存圈的transform
+
+        attractCircleLine = lineObj.AddComponent<LineRenderer>();
+        attractCircleLine.enabled = false;
+        attractCircleLine.positionCount = circlePoints + 1;
+        attractCircleLine.loop = true;
+        attractCircleLine.useWorldSpace = true;
+
+        attractCircleLine.startWidth = attractLineWidth;
+        attractCircleLine.endWidth = attractLineWidth;
+        attractCircleLine.startColor = attractLineColor;
+        attractCircleLine.endColor = attractLineColor;
+        attractCircleLine.material = dashedCircleMaterial;
+        attractCircleLine.textureMode = LineTextureMode.Tile;
+        attractCircleLine.material.mainTextureScale = new Vector2(dashDensity, 1);
+        attractCircleLine.material.color = new Color(attractLineColor.r, attractLineColor.g, attractLineColor.b, 0);
+
+        attractCircleLine.sortingLayerName = "Ground";
+        attractCircleLine.sortingOrder = 100;
+
+        // 呼吸动画（独立，不进序列）
+        Tween breathTween = DOTween.To(() => circleTrans.localScale,
+            s => circleTrans.localScale = s,
+            Vector3.one * (1 + breathScale),
+            breathSpeed)
+            .SetLoops(-1, LoopType.Yoyo)
+            .SetAutoKill(false);
+
+        // 旋转动画（独立，不进序列，保留虚线滚动）
+        Tween rotateTween = DOTween.To(() => circleTrans.rotation.eulerAngles.z,
+            r => circleTrans.rotation = Quaternion.Euler(0, 0, r),
+            360,
+            rotateSpeed)
+            .SetLoops(-1, LoopType.Incremental)
+            .SetAutoKill(false);
+
+        // 序列只用来统一控制播放/暂停，不嵌套循环
+        circleAnimSeq = DOTween.Sequence()
+            .Append(breathTween)
+            .Join(rotateTween)
+            .SetAutoKill(false)
+            .Pause();
     }
 
     protected override void Start()
     {
         base.Start();
-
         stateMachine.Initialize(idleState);
     }
-
-
 
     protected override void Update()
     {
         base.Update();
+        DrawAttractCircle();
 
-        // ����ƽ̨�����߼� (�� S ���ڵ���)
+        // 只在按下/松开Q时执行一次动画，不每帧生成
+        if (isAttracting != wasAttracting)
+        {
+            wasAttracting = isAttracting;
+
+            if (isAttracting)
+            {
+                attractCircleLine.enabled = true;
+                circleAnimSeq.Play();
+
+                fadeTween?.Kill();
+                fadeTween = attractCircleLine.material.DOFade(1, fadeDuration);
+            }
+            else
+            {
+                circleAnimSeq.Pause();
+
+                fadeTween?.Kill();
+                fadeTween = attractCircleLine.material.DOFade(0, fadeDuration).OnComplete(() =>
+                {
+                    attractCircleLine.enabled = false;
+                });
+            }
+        }
+
         if (moveInput.y < -0.5f && groundDetected && !isPassingThroughPlatform)
         {
             RaycastHit2D hit = Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, whatIsGround);
@@ -149,20 +240,28 @@ public class Player : Entity
         }
     }
 
+    void DrawAttractCircle()
+    {
+        for (int i = 0; i <= circlePoints; i++)
+        {
+            float angle = Mathf.Deg2Rad * (360f / circlePoints * i);
+            Vector2 offset = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * attractRadius;
+            attractCircleLine.SetPosition(i, transform.position + (Vector3)offset);
+        }
+    }
+
     private IEnumerator PassThroughOneWayPlatform(Collider2D platformCollider)
     {
         isPassingThroughPlatform = true;
         Collider2D[] playerColliders = GetComponentsInChildren<Collider2D>();
-        
-        // ������ײ������ҵ���ȥ
+
         foreach (var pCol in playerColliders)
         {
             Physics2D.IgnoreCollision(pCol, platformCollider, true);
         }
-        
-        yield return new WaitForSeconds(0.35f); // 0.35��ͨ���㹻����һ��ƽ̨
-        
-        // �ָ���ײ
+
+        yield return new WaitForSeconds(0.35f);
+
         if (platformCollider != null)
         {
             foreach (var pCol in playerColliders)
@@ -171,14 +270,13 @@ public class Player : Entity
                     Physics2D.IgnoreCollision(pCol, platformCollider, false);
             }
         }
-        
+
         isPassingThroughPlatform = false;
     }
 
-    public override void EntityDeath()//ʵ����������д
+    public override void EntityDeath()
     {
         base.EntityDeath();
-
         OnPlayerDeath?.Invoke();
         stateMachine.ChangeState(deadState);
         StartCoroutine(WaitDeathAnimation());
@@ -186,7 +284,6 @@ public class Player : Entity
 
     private IEnumerator WaitDeathAnimation()
     {
-        // �ȴ�1�루�����������������ʵ�ʳ����޸����ʱ�䣩
         yield return new WaitForSeconds(1.0f);
 
         if (LevelManager.Instance != null)
@@ -195,10 +292,9 @@ public class Player : Entity
         }
         else
         {
-            Debug.LogError("û���ҵ� LevelManager.Instance���޷�������ң���ȷ���ڴ˳������Ѿ������� LevelManager��");
+            Debug.LogError("未找到 LevelManager，无法复活！");
         }
     }
-
 
     private void OnEnable()
     {
@@ -206,26 +302,31 @@ public class Player : Entity
 
         input.Player.Move.performed += ctx => moveInput = ctx.ReadValue<Vector2>();
         input.Player.Move.canceled += ctx => moveInput = Vector2.zero;
+
+        input.Player.Attract.performed += _ => isAttracting = true;
+        input.Player.Attract.canceled += _ => isAttracting = false;
     }
 
     private void OnDisable()
     {
+        input.Player.Attract.performed -= _ => isAttracting = true;
+        input.Player.Attract.canceled -= _ => isAttracting = false;
         input.Disable();
     }
 
     protected virtual void OnDestroy()
     {
+        fadeTween?.Kill();
+        circleAnimSeq?.Kill();
+        circleTrans?.DOKill();
         transform.DOKill();
     }
 
-    /// <summary>
-    /// Play a footstep sound. Intended to be called from MoveState distance logic or from animation events.
-    /// </summary>
     public void PlayFootstep()
     {
         if (footstepSource == null || sfx_Footstep == null) return;
         if (footstepSource.isPlaying) return;
-        // small random pitch variation for natural feel
+
         float oldPitch = footstepSource.pitch;
         float rp = UnityEngine.Random.Range(0.97f, 1.03f);
         footstepSource.pitch = rp;
@@ -235,14 +336,11 @@ public class Player : Entity
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // ֻ�������������ǽ�ڲż��� (����ײ���Layer��whatIsGround��)
         int layerMask = 1 << collision.gameObject.layer;
         if ((layerMask & whatIsGround.value) != 0)
         {
-            // ��ȡ��ײ˲��˫��������ٶȴ�С
             float impactSpeed = collision.relativeVelocity.magnitude;
 
-            // �����������ֵ����Ŀǰ��û�з���
             if (impactSpeed >= splitSpeedThreshold && !isSplit)
             {
                 TriggerSplit(impactSpeed, collision.contacts[0].normal);
@@ -254,25 +352,21 @@ public class Player : Entity
     {
         isSplit = true;
 
-        // 1. ��С�Ķ���
         transform.DOKill();
         transform.DOScale(originalScale * splitScaleMultiplier, 0.2f).SetEase(Ease.OutBack);
 
-        // 2. ������÷���ĵ������� (���߼򵥵������Ϸ���)
         Vector2 bounceDir = hitNormal;
-        if (Mathf.Abs(bounceDir.y) < 0.1f) bounceDir.y = 1f; // ȷ����΢�и����ϵ�������
+        if (Mathf.Abs(bounceDir.y) < 0.1f) bounceDir.y = 1f;
 
         rb.linearVelocity = Vector2.zero;
         rb.AddForce(bounceDir.normalized * splitBounceForce, ForceMode2D.Impulse);
 
-        // play split and small bounce sounds
         if (audioSource != null)
         {
             if (sfx_Split != null) audioSource.PlayOneShot(sfx_Split, sfxVolume);
             if (sfx_SmallBounce != null) audioSource.PlayOneShot(sfx_SmallBounce, sfxVolume);
         }
 
-        // 3. ��ԭ������һ���޷��ƶ��ķ���
         CreateClone(speed);
     }
 
@@ -280,23 +374,26 @@ public class Player : Entity
     {
         if (slimeClonePrefab == null)
         {
-            Debug.LogWarning("δ���� SlimeClone Ԥ���壡���� Player ��������� Slime Clone Prefab��");
+            Debug.LogWarning("未设置 SlimeClone 预制体！");
             return;
         }
 
-        Vector3 spawnPos = transform.position - new Vector3(0, originalScale.y * (1f - splitScaleMultiplier) * 0.5f, 0); // ���ڽŵ�
-
-        // ʵ��������Ԥ���壬��ȫʹ��Ԥ�����Դ��ĳߴ�
+        Vector3 spawnPos = transform.position - new Vector3(0, originalScale.y * (1f - splitScaleMultiplier) * 0.5f, 0);
         GameObject cloneObj = Instantiate(slimeClonePrefab, spawnPos, Quaternion.identity);
 
         SlimeClone cloneScript = cloneObj.GetComponent<SlimeClone>();
-        if (cloneScript == null) cloneScript = cloneObj.AddComponent<SlimeClone>();
-
         cloneScript.Init(this, speed);
 
-        // play slime clone spawn sound
         if (audioSource != null && sfx_SlimeCloneSpawn != null)
             audioSource.PlayOneShot(sfx_SlimeCloneSpawn, sfxVolume);
+    }
+
+    public void AbsorbClone(SlimeClone clone)
+    {
+        if (!isSplit || clone == null) return;
+
+        RestoreFromSplit();
+        Destroy(clone.gameObject);
     }
 
     public void RestoreFromSplit()
@@ -304,29 +401,22 @@ public class Player : Entity
         isSplit = false;
         transform.DOKill();
         transform.DOScale(originalScale, 0.3f)
-        .SetEase(Ease.OutBack)
-        .OnComplete(() =>
-        {
-            bool isStuck = CheckPlayerStuck();
-            if (isStuck)
+            .SetEase(Ease.OutBack)
+            .OnComplete(() =>
             {
-                stats.TakeDamage(1);
-            }
-        });
+                bool isStuck = CheckPlayerStuck();
+                if (isStuck)
+                {
+                    stats.TakeDamage(1);
+                }
+            });
     }
 
-    // ����Ƿ����ϰ�����
     bool CheckPlayerStuck()
     {
         Vector2 center = col.bounds.center;
         Vector2 size = col.bounds.size;
-
-        // ��⵱ǰ�����Ƿ����ϰ���㣨ֻ���ǽ�����棬������ҡ����ߣ�
         Collider2D hit = Physics2D.OverlapBox(center, size, 0, obstacleLayer);
-
-        // ����ײ�ص� = ����ס
         return hit != null;
     }
-
-
 }

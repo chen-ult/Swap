@@ -48,11 +48,11 @@ public class BubblePopAnim : MonoBehaviour
         _bubbleRect.localScale = Vector3.zero;
 
         // 弹出动画 + 轻轻弹跳
-        _bubbleRect.DOScale(Vector3.one, popTime)
+        _bubbleRect.DOScale(Vector3.one*3, popTime)
                    .SetEase(Ease.OutBack)
                    .OnComplete(() =>
                    {
-                       _bubbleRect.DOScale(Vector3.one * bounceScale, 0.2f)
+                       _bubbleRect.DOScale(Vector3.one * 3 * bounceScale, 0.2f)
                                   .SetLoops(2, LoopType.Yoyo)
                                   .SetEase(Ease.InOutSine);
                    });

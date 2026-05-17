@@ -10,6 +10,10 @@ public class SpeedAbsorberSwitch : MonoBehaviour
     private Sprite originalSwitchSprite;
     private SpriteRenderer switchRenderer;
 
+    [Header("吸收过滤")]
+    [Tooltip("只吸收这些标签的物体，留空=吸收所有刚体")]
+    public string[] allowedTags;
+
     [Header("目标障碍物设置")]
     [Tooltip("关联的多个障碍物对象（支持多个门或墙）")]
     public GameObject[] targetObstacles;
@@ -148,41 +152,51 @@ public class SpeedAbsorberSwitch : MonoBehaviour
         return tm;
     }
 
+    // 检查标签是否允许吸收
+    private bool IsTagAllowed(string tag)
+    {
+        if (allowedTags == null || allowedTags.Length == 0)
+            return true;
+
+        foreach (string t in allowedTags)
+        {
+            if (t == tag) return true;
+        }
+        return false;
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        // 只要有刚体、标签允许，就吸收
+        Rigidbody2D rb = other.GetComponent<Rigidbody2D>();
+        if (rb == null) return;
+        if (!IsTagAllowed(other.tag)) return;
+
+        float speed = rb.linearVelocity.magnitude;
+        if (speed <= 0.5f) return;
+
+        float previousTimer = timer;
+        timer += speed * speedToTimeMultiplier;
+        timer = Mathf.Min(timer, maxTimeLimit);
+
+        if (previousTimer >= maxTimeLimit - 0.05f)
         {
-            Rigidbody2D playerRb = other.GetComponent<Rigidbody2D>();
-            if (playerRb != null)
-            {
-                float speed = playerRb.linearVelocity.magnitude;
+            PlayRejectAnimation();
+        }
+        else
+        {
+            PlayAbsorbAnimation();
+            // 只在成功吸收时播放音效
+            if (absorbSound != null)
+                audioSource.PlayOneShot(absorbSound, soundVolume);
+        }
 
-                if (speed > 0.5f)
-                {
-                    float previousTimer = timer;
-                    timer += speed * speedToTimeMultiplier;
-                    timer = Mathf.Min(timer, maxTimeLimit);
+        // 把物体速度清零
+        rb.linearVelocity = Vector2.zero;
 
-                    if (previousTimer >= maxTimeLimit - 0.05f)
-                    {
-                        PlayRejectAnimation();
-                    }
-                    else
-                    {
-                        PlayAbsorbAnimation();
-                        // 只在成功吸收时播放音效
-                        if (absorbSound != null)
-                            audioSource.PlayOneShot(absorbSound, soundVolume);
-                    }
-
-                    playerRb.linearVelocity = Vector2.zero;
-
-                    if (!isGhosted)
-                    {
-                        SetGhostState(true);
-                    }
-                }
-            }
+        if (!isGhosted)
+        {
+            SetGhostState(true);
         }
     }
 

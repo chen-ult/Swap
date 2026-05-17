@@ -1,11 +1,12 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(SpriteRenderer))]
 public class PressureButton : MonoBehaviour
 {
     [Header("按钮美术配置")]
-    public Sprite unpressedSprite; // 未被踩下的图片
-    public Sprite pressedSprite;   // 被踩下时的图片
+    public Sprite unpressedSprite;
+    public Sprite pressedSprite;
 
     [Header("音效")]
     public AudioClip pressSound;
@@ -16,14 +17,15 @@ public class PressureButton : MonoBehaviour
     public bool stayPressed = false;
 
     [Header("机关连接")]
-    [Tooltip("把场景里你想开启的门（带有ToggleDoor脚本的物体）拖到这个数组里")]
     public ToggleDoor[] linkedDoors;
 
     private SpriteRenderer sr;
     private AudioSource audioSource;
-    
-    // 记录目前有几个物体压在上面，防止玩家和箱子都在上面时，玩家一走门就关了
-    private int objectsOnButton = 0; 
+    private int objectsOnButton = 0;
+    private bool isPermanentlyActivated = false;
+
+    [SerializeField] private string buttonSaveID;
+    private const string SAVE_KEY_PREFIX = "PressureButton_";
 
     private void Awake()
     {
@@ -34,32 +36,55 @@ public class PressureButton : MonoBehaviour
             audioSource = gameObject.AddComponent<AudioSource>();
             audioSource.playOnAwake = false;
         }
-        if (unpressedSprite != null) sr.sprite = unpressedSprite;
+
+        if (string.IsNullOrEmpty(buttonSaveID))
+        {
+            buttonSaveID = System.Guid.NewGuid().ToString();
+        }
+    }
+
+    private void Start()
+    {
+        // 把读取存档放到 Start，确保门已初始化
+        LoadButtonState();
+
+        if (unpressedSprite != null && !isPermanentlyActivated)
+            sr.sprite = unpressedSprite;
+    }
+
+    private void Update()
+    {
+        if (Keyboard.current.rKey.wasPressedThisFrame)
+        {
+            ResetAllButtons();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // 可以根据需要限制只有实体（比如玩家、箱子）才能触发，忽略虚影、子弹等
-        // if (!collision.CompareTag("Player") && !collision.CompareTag("Box")) return;
+        if (isPermanentlyActivated) return;
 
         objectsOnButton++;
 
-        // 只要刚从 0 变成 1，说明按钮被踩下了
         if (objectsOnButton == 1)
         {
             PlayPressSound();
             ActivateMechanism(true);
+
+            if (stayPressed)
+            {
+                isPermanentlyActivated = true;
+                SaveButtonState();
+            }
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        // 【核心修改】：如果设置为永久压下，那么即便物体离开了，也直接忽略还原逻辑，让大门和按钮永远保持激活！
-        if (stayPressed) return;
+        if (stayPressed || isPermanentlyActivated) return;
 
         objectsOnButton--;
 
-        // 防止计算错误掉到0以下，当确认为0时，说明上面没东西了，松开按钮
         if (objectsOnButton <= 0)
         {
             objectsOnButton = 0;
@@ -69,26 +94,68 @@ public class PressureButton : MonoBehaviour
 
     private void ActivateMechanism(bool isPressed)
     {
-        // 切换按钮自己的图片
+        // 切换图片
         if (isPressed && pressedSprite != null)
             sr.sprite = pressedSprite;
         else if (!isPressed && unpressedSprite != null)
             sr.sprite = unpressedSprite;
 
-        // 让所有连接到的门都跟着打开或关闭
+        // 安全控制门（防空引用）
+        if (linkedDoors == null) return;
         foreach (ToggleDoor door in linkedDoors)
         {
             if (door != null)
-            {
                 door.SetDoorState(isPressed);
-            }
         }
     }
+
+    #region 存档 & 重置
+    private void SaveButtonState()
+    {
+        PlayerPrefs.SetInt(SAVE_KEY_PREFIX + buttonSaveID, isPermanentlyActivated ? 1 : 0);
+        PlayerPrefs.Save();
+    }
+
+    private void LoadButtonState()
+    {
+        if (!stayPressed) return;
+
+        isPermanentlyActivated = PlayerPrefs.GetInt(SAVE_KEY_PREFIX + buttonSaveID, 0) == 1;
+
+        if (isPermanentlyActivated)
+        {
+            ActivateMechanism(true);
+        }
+    }
+
+    public void ResetButton()
+    {
+        objectsOnButton = 0;
+        isPermanentlyActivated = false;
+        ActivateMechanism(false);
+        SaveButtonState();
+    }
+
+    private void ResetAllButtons()
+    {
+        PressureButton[] allButtons = Object.FindObjectsByType<PressureButton>();
+        foreach (var btn in allButtons)
+        {
+            btn.ResetButton();
+        }
+        Debug.Log("已重置所有按钮");
+    }
+    #endregion
 
     private void PlayPressSound()
     {
         if (pressSound == null || audioSource == null) return;
-
         audioSource.PlayOneShot(pressSound, soundVolume);
+    }
+
+    private void OnValidate()
+    {
+        if (string.IsNullOrEmpty(buttonSaveID))
+            buttonSaveID = System.Guid.NewGuid().ToString();
     }
 }

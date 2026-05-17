@@ -36,9 +36,13 @@ public class NextLevelDoor : MonoBehaviour
     private bool isPlayerNear = false; // 玩家是否在门前
     private Vector3 initialLockScale;
     private Vector3 initialDoorScale;
+    private string saveKey;
 
     private void Awake()
     {
+        // 构造当前门专属的存档键值名
+        saveKey = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name + "_NextLevelDoor_Unlocked";
+
         // 初始化AudioSource
         audioSource = GetComponent<AudioSource>();
         if (audioSource == null)
@@ -47,8 +51,20 @@ public class NextLevelDoor : MonoBehaviour
             audioSource.playOnAwake = false;
         }
 
-        // 初始化时，如果需要钥匙，就默认为上锁状态
-        isLocked = requiresKey;
+        // 检查之前是否已经解锁过了
+        bool hasBeenUnlockedBefore = PlayerPrefs.GetInt(saveKey, 0) == 1;
+
+        // 如果配置了需要钥匙，且未曾解锁过，则上锁
+        if (requiresKey && !hasBeenUnlockedBefore)
+        {
+            isLocked = true;
+        }
+        else
+        {
+            isLocked = false;
+            // 如果之前解锁过，直接藏掉锁的图标
+            if (lockIcon != null) lockIcon.gameObject.SetActive(false);
+        }
 
         // 一开始隐藏提示
         if (interactPrompt != null)
@@ -188,12 +204,16 @@ public class NextLevelDoor : MonoBehaviour
         isLocked = false;
         Debug.Log("[NextLevelDoor] 门已解锁");
 
+        // === 永久记录此门被解锁的状态 ===
+        PlayerPrefs.SetInt(saveKey, 1);
+        PlayerPrefs.Save();
+
         if (unlockSound != null && audioSource != null)
         {
             audioSource.PlayOneShot(unlockSound);
         }
 
-        if (lockIcon != null)
+        if (lockIcon != null && lockIcon.gameObject.activeSelf)
         {
             // 打断待机的Q弹动画，并恢复默认大小作为掉落基准
             lockIcon.DOKill();
@@ -216,5 +236,14 @@ public class NextLevelDoor : MonoBehaviour
                 lockIcon.gameObject.SetActive(false);
             });
         }
+    }
+
+    [ContextMenu("Debug: 重置本关的门锁状态 (清除存档)")]
+    public void DebugResetLock()
+    {
+        string key = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name + "_NextLevelDoor_Unlocked";
+        PlayerPrefs.DeleteKey(key);
+        PlayerPrefs.Save();
+        Debug.Log($"[NextLevelDoor] 已清除本关的解锁记录：{key}。重新加载/运行场景后，该门将恢复上锁状态！");
     }
 }

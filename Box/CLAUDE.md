@@ -23,8 +23,8 @@ This is a 2D platformer Unity game featuring a slime character with unique mecha
 
 **Manager System**
 - `LevelManager`: Singleton managing scene transitions, checkpoints, and level progression
-- `UIManager`: Handles UI fade transitions
-- `MomentumSwapManager`: Manages momentum-based object swapping
+- `UIManager`: Handles UI fade transitions, health/stars display, and menu systems
+- `MomentumSwapManager`: Manages momentum-based object swapping and bullet time mechanics
 
 ### Key Features
 
@@ -49,6 +49,12 @@ This is a 2D platformer Unity game featuring a slime character with unique mecha
 - Spike traps and breakable obstacles
 - Collectible stars and level keys
 
+**Momentum Swap System**
+- Press LeftShift to activate bullet time
+- Click on swappable objects to select them
+- Exchange or transfer momentum between objects
+- Visual feedback with arrows and particle effects
+
 ## Development Commands
 
 ### Unity Editor Operations
@@ -62,6 +68,7 @@ This is a 2D platformer Unity game featuring a slime character with unique mecha
 - State machines: `Assets/Script/Player/PlayerState/` and `Assets/Script/Enemy/EnemyState/`
 - Environment objects: `Assets/Script/Environment/`
 - Managers: `Assets/Script/Managers/`
+- UI components: `Assets/Script/UI/`
 
 ### Debugging
 - Press `Delete` key in-game to clear all PlayerPrefs (for testing progression)
@@ -91,11 +98,25 @@ When adding new states:
 - Always use `LevelManager` for scene transitions to ensure proper cleanup
 - Checkpoint system uses `PlayerPrefs` for persistence
 - Scene transitions kill all DOTween animations via `DOTween.KillAll()`
+- Player spawn points prioritize `NextLevelDoor` for backward navigation
 
 ### Physics & Collision
 - Ground detection uses raycasting with `whatIsGround` layer mask
 - Collision handling in `OnCollisionEnter2D` for mechanics like wall-splitting
 - Platform effector components used for one-way platforms
+
+### Momentum System
+- Swappable objects must implement `IMomentumSwappable` interface
+- Momentum calculations support both true momentum (mass × velocity) and direct velocity swapping
+- Speed limits prevent infinite velocity accumulation
+- Transfer functionality can be unlocked via `isTransferUnlocked` flag
+
+### UI System
+- Heart-based health display system
+- Star collection tracking
+- Fade transitions between scenes
+- Pause menu with restart functionality
+- End sequence with typing text effects and time display
 
 ## Project Settings
 - 2D physics with custom Physics2D settings

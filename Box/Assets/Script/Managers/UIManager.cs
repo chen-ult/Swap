@@ -1,27 +1,25 @@
 ﻿using System.Collections;
-using UnityEngine;
-using UnityEngine.UI;
 using DG.Tweening;
 using TMPro;
+using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    #region 单例
     public static UIManager Instance { get; private set; }
+    #endregion
 
+    #region 公开序列化字段（Inspector面板）
     [Header("玩家血量 UI")]
     [Tooltip("装有所有心形图片的空父物体")]
     public Transform heartContainer;
-    private Image[] heartImages;
     public Sprite fullHeartSprite;
     public Sprite emptyHeartSprite;
 
-    [Header("过关星星 UI")]
-    [Tooltip("装有3个星星图片的空父物体")]
-    public Transform starContainer;
-    private Image[] starImages;
-    public Sprite fullStarSprite;
-    public Sprite emptyStarSprite;
-    private int currentStars = 0;
+
 
     [Header("过渡动画 UI")]
     public Image fadeImage;
@@ -42,10 +40,8 @@ public class UIManager : MonoBehaviour
     public Button pauseRestartButton;
     public float pausePanelAnimDuration = 0.35f;
 
-    // ====================== 【新增：屏幕暂停按钮】 ======================
     [Header("屏幕菜单按钮")]
     public Button screenPauseButton;
-    // ==================================================================
 
     [Header("开始面板")]
     public GameObject startPanel;
@@ -66,6 +62,7 @@ public class UIManager : MonoBehaviour
     public float startTitleImageRotateAmount = 6f;
     public float startTitleImageRotatePeriod = 4f;
 
+    [Header("结束面板文本")]
     public TextMeshProUGUI thanksTimeText;
     public TextMeshProUGUI thanksTitleText;
     public Button quitButton;
@@ -94,7 +91,19 @@ public class UIManager : MonoBehaviour
     public Color timeHighlightColor = Color.yellow;
     public float timeHighlightPeriod = 1.2f;
 
-    public FollowCameraPauseButton followCameraButton; // 拖入场景中的按钮
+    [Header("跟随相机按钮")]
+    public FollowCameraPauseButton followCameraButton;
+
+    [Header("星星UI（图片×数量）")]
+    public Image starIcon;       // 星星图标
+    public TextMeshProUGUI starText; // 数量文本
+    public int totalStarCount = 100000;   // 总数量（自己定）
+
+
+    #endregion
+
+    #region 私有变量
+    private Image[] heartImages;
 
     private AudioSource uiAudio;
 
@@ -106,7 +115,35 @@ public class UIManager : MonoBehaviour
     private DG.Tweening.Tween timeCountTweenRef;
 
     private Entity_Stats playerStats;
+    private Color restartButtonOrigColor = Color.white;
+    private Color thanksTimeOrigColor = Color.white;
+    
 
+    public bool isPaused { get; private set; } = false;
+    private bool isStartMenuVisible = false;
+    public bool IsStartMenuVisible => isStartMenuVisible;
+
+    private Coroutine endSequenceCoroutine;
+
+    private DG.Tweening.Tween startBgScrollTween;
+    private DG.Tweening.Tween startBgBobTween;
+    private DG.Tweening.Tween titleImagePopTween;
+    private DG.Tweening.Tween titleImageBobTween;
+    private DG.Tweening.Tween titleImageRotateTween;
+    private Color startTitleImageOrigColor;
+    private Vector3 startTitleImageOrigScale;
+
+    private float _tempSpeedFromTime = 0f;
+    private bool _hasClickedTime = false;
+    private float _finalElapsedTime = 0f;
+
+    //star
+    private int currentStarUI = 0; // UI显示计数
+
+
+    #endregion
+
+    #region 生命周期
     private void Awake()
     {
         if (Instance == null)
@@ -123,10 +160,10 @@ public class UIManager : MonoBehaviour
                 Debug.LogWarning("UIManager: 未指定 Heart Container！");
             }
 
-            if (starContainer != null)
-            {
-                starImages = starContainer.GetComponentsInChildren<Image>();
-            }
+          
+
+
+            
 
             uiAudio = GetComponent<AudioSource>();
             if (uiAudio == null)
@@ -158,26 +195,23 @@ public class UIManager : MonoBehaviour
             {
                 startTitleText.gameObject.SetActive(false);
             }
-            // ====================== 【绑定屏幕暂停按钮】 ======================
+
             if (screenPauseButton != null)
             {
                 screenPauseButton.onClick.RemoveListener(OnScreenPauseButtonClicked);
                 screenPauseButton.onClick.AddListener(OnScreenPauseButtonClicked);
             }
-            // ==================================================================
         }
         else
         {
             Destroy(gameObject);
             return;
         }
-
-        
-
     }
 
     private void Start()
     {
+        InitStarUI();
         if (fadeImage != null)
         {
             fadeImage.color = new Color(0, 0, 0, 0);
@@ -192,31 +226,32 @@ public class UIManager : MonoBehaviour
             var scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
             if (scene.name == "level_0" && startPanel != null)
             {
-                if (LevelManager.Instance != null && LevelManager.Instance.IsTransitioning)
+                // 新增：判断 LevelManager 的重启标记，仅非重启时等待过渡后显示开始菜单
+                if (LevelManager.Instance != null)
                 {
-                    StartCoroutine(WaitForTransitionThenShowStart());
+                    if (LevelManager.Instance.IsTransitioning && !LevelManager.Instance.isRestartingToLevel0)
+                    {
+                        StartCoroutine(WaitForTransitionThenShowStart());
+                    }
+                    else if (!LevelManager.Instance.isRestartingToLevel0)
+                    {
+                        ShowStartMenu();
+                    }
                 }
-                else
+                else if (!LevelManager.Instance?.isRestartingToLevel0 ?? true)
                 {
+                    // 无 LevelManager 时的兜底（首次进入）
                     ShowStartMenu();
                 }
             }
         }
         catch { }
 
-        // 初始确保跟随按钮隐藏但不销毁
         if (followCameraButton != null)
         {
             followCameraButton.gameObject.SetActive(true);
             followCameraButton.transform.localScale = Vector3.zero;
         }
-    }
-
-    private IEnumerator WaitForTransitionThenShowStart()
-    {
-        while (LevelManager.Instance != null && LevelManager.Instance.IsTransitioning)
-            yield return null;
-        ShowStartMenu();
     }
 
     private void OnEnable()
@@ -245,13 +280,9 @@ public class UIManager : MonoBehaviour
         catch { }
     }
 
-    public bool isPaused { get; private set; } = false;
-    private bool isStartMenuVisible = false;
-    public bool IsStartMenuVisible => isStartMenuVisible;
-
     private void Update()
     {
-        if ((thanksPanel != null && thanksPanel.activeSelf) || (endImagePanel != null && endImagePanel.activeSelf))
+        if (endImagePanel != null && endImagePanel.activeSelf)
             return;
 
         bool escPressed = false;
@@ -264,6 +295,41 @@ public class UIManager : MonoBehaviour
             if (!isPaused) ShowPauseMenu();
             else HidePauseMenu();
         }
+
+        try
+        {
+            var keyboard = UnityEngine.InputSystem.Keyboard.current;
+            if (keyboard != null && thanksPanel != null && thanksPanel.activeSelf)
+            {
+                bool shiftDown = keyboard.leftShiftKey.isPressed || keyboard.rightShiftKey.isPressed;
+                if (restartButton != null && restartButton.image != null)
+                {
+                    restartButton.image.color = shiftDown ? timeHighlightColor : restartButtonOrigColor;
+                }
+                if (thanksTimeText != null)
+                {
+                    thanksTimeText.color = shiftDown ? timeHighlightColor : thanksTimeOrigColor;
+                }
+            }
+        }
+        catch { }
+    }
+
+    private void OnDestroy()
+    {
+        if (playerStats != null)
+        {
+            playerStats.OnHealthChanged -= UpdateHealthUI;
+        }
+    }
+    #endregion
+
+    #region 场景加载与初始化
+    private IEnumerator WaitForTransitionThenShowStart()
+    {
+        while (LevelManager.Instance != null && LevelManager.Instance.IsTransitioning)
+            yield return null;
+        ShowStartMenu();
     }
 
     private void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode mode)
@@ -277,8 +343,7 @@ public class UIManager : MonoBehaviour
         FindAndSubscribeToPlayer();
         FindSceneButtons();
 
-        currentStars = 0;
-        UpdateStarUI();
+
 
         if (endImagePanel != null) endImagePanel.SetActive(false);
         if (thanksPanel != null) thanksPanel.SetActive(false);
@@ -293,30 +358,28 @@ public class UIManager : MonoBehaviour
     {
         try
         {
-            // 1. 自动寻找跟随相机的按钮组件
             FollowCameraPauseButton[] followBtns = Resources.FindObjectsOfTypeAll<FollowCameraPauseButton>();
             foreach (var btn in followBtns)
             {
-                if (btn.gameObject.scene.isLoaded) // 确保是当前场景里的而不是预制体
+                if (btn.gameObject.scene.isLoaded)
                 {
                     followCameraButton = btn;
                     break;
                 }
             }
 
-            // 2. 自动寻找屏幕上的暂停按钮（你可以把它命名为 ScreenPauseButton 或使用 Tag）
             GameObject screenBtnObj = GameObject.Find("ScreenPauseButton");
-            try 
+            try
             {
-                if (screenBtnObj == null) screenBtnObj = GameObject.FindWithTag("PauseButton"); // 备用Tag查找（如果Tag没注册会报错，用个try保护）
-            } catch { }
+                if (screenBtnObj == null) screenBtnObj = GameObject.FindWithTag("PauseButton");
+            }
+            catch { }
 
             if (screenBtnObj != null)
             {
                 screenPauseButton = screenBtnObj.GetComponent<Button>();
             }
 
-            // 重新绑定屏幕暂停按钮事件
             if (screenPauseButton != null)
             {
                 screenPauseButton.onClick.RemoveListener(OnScreenPauseButtonClicked);
@@ -328,40 +391,9 @@ public class UIManager : MonoBehaviour
             Debug.LogWarning("FindSceneButtons 出错: " + e.Message);
         }
     }
+    #endregion
 
-    private void UpdateStarUI()
-    {
-        if (starImages == null || starImages.Length == 0) return;
-
-        for (int i = 0; i < starImages.Length; i++)
-        {
-            if (i < currentStars) starImages[i].sprite = fullStarSprite;
-            else starImages[i].sprite = emptyStarSprite;
-        }
-    }
-
-    public Vector3 ClaimNextStarTargetPosition(out int targetIndex)
-    {
-        targetIndex = currentStars;
-
-        if (starImages == null || starImages.Length == 0 || targetIndex >= starImages.Length)
-        {
-            return Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Mathf.Abs(Camera.main.transform.position.z)));
-        }
-
-        Vector3 uiScreenPos = starImages[targetIndex].transform.position;
-        Vector3 worldTarget = Camera.main.ScreenToWorldPoint(new Vector3(uiScreenPos.x, uiScreenPos.y, Mathf.Abs(Camera.main.transform.position.z)));
-        currentStars++;
-        return worldTarget;
-    }
-
-    public void LightUpStar(int index)
-    {
-        if (starImages == null || index >= starImages.Length) return;
-        starImages[index].sprite = fullStarSprite;
-        starImages[index].transform.DOPunchScale(new Vector3(0.5f, 0.5f, 0), 0.5f, 5, 1f);
-    }
-
+    #region 玩家与血量UI
     public void FindAndSubscribeToPlayer()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
@@ -378,14 +410,6 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
-    {
-        if (playerStats != null)
-        {
-            playerStats.OnHealthChanged -= UpdateHealthUI;
-        }
-    }
-
     private void UpdateHealthUI(int currentHealth, int maxHealth)
     {
         if (heartImages == null || heartImages.Length == 0) return;
@@ -399,7 +423,49 @@ public class UIManager : MonoBehaviour
             else heartImages[i].enabled = false;
         }
     }
+    #endregion
 
+    #region 星星UI
+    void InitStarUI()
+    {
+        currentStarUI = StarSaveManager.Instance.GetStarCount();
+        // 只显示：×数量
+        starText.text = $"×{currentStarUI}";
+    }
+
+    // 收集星星
+    public void CollectStar()
+    {
+        currentStarUI++;
+        starText.text = $"×{currentStarUI}";
+
+        // 动画
+        starIcon.transform.DOKill();
+        starIcon.transform.DOPunchScale(new Vector3(0.4f, 0.4f, 0), 0.4f, 5, 1f);
+    }
+
+    // 重置UI
+    public void ResetStarUI()
+    {
+        currentStarUI = 0;
+        starText.text = $"×0";
+    }
+
+    // 飞星目标位置
+    public static Vector3 ClaimNextStarTargetPosition(out int targetIndex)
+    {
+        targetIndex = 0;
+        return Camera.main.ScreenToWorldPoint(
+            new Vector3(
+                UIManager.Instance.starIcon.transform.position.x,
+                UIManager.Instance.starIcon.transform.position.y,
+                Mathf.Abs(Camera.main.transform.position.z)
+            )
+        );
+    }
+    #endregion
+
+    #region 淡入淡出动画
     public IEnumerator FadeOutRoutine()
     {
         if (fadeImage != null)
@@ -418,7 +484,9 @@ public class UIManager : MonoBehaviour
             fadeImage.gameObject.SetActive(false);
         }
     }
+    #endregion
 
+    #region 结束面板
     public void ShowEndPanel(float elapsedSeconds)
     {
         if (endPanel == null) return;
@@ -429,10 +497,11 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    private Coroutine endSequenceCoroutine;
-
     public void ShowEndSequence(float elapsedSeconds, float firstImageDuration = 2f)
     {
+        // 👇 关键：把结束时的定格时间存起来
+        _finalElapsedTime = elapsedSeconds;
+
         if (endImagePanel == null && thanksPanel == null)
             return;
 
@@ -532,6 +601,23 @@ public class UIManager : MonoBehaviour
                         StartTimeIdle();
                     }).SetTarget(thanksTimeText);
                 }
+
+                try
+                {
+                    thanksTimeOrigColor = thanksTimeText.color;
+
+                    if (restartButton != null && restartButton.image != null)
+                    {
+                        restartButtonOrigColor = restartButton.image.color;
+                    }
+
+                    var timeBtn = thanksTimeText.GetComponent<UnityEngine.UI.Button>();
+                    if (timeBtn == null)
+                        timeBtn = thanksTimeText.gameObject.AddComponent<UnityEngine.UI.Button>();
+                    timeBtn.onClick.RemoveListener(OnThanksTimeClicked);
+                    timeBtn.onClick.AddListener(OnThanksTimeClicked);
+                }
+                catch { }
             }
 
             if (quitButton != null)
@@ -568,19 +654,14 @@ public class UIManager : MonoBehaviour
         }
         yield break;
     }
+    #endregion
 
-    private void PlayButtonSound()
-    {
-        if (uiAudio != null && buttonClickSound != null)
-            uiAudio.PlayOneShot(buttonClickSound, clickVolume);
-    }
-
+    #region 暂停菜单
     public void ShowPauseMenu()
     {
         if (pausePanel == null) return;
         PlayButtonSound();
 
-        // ✅✅✅ 【加在这里！一打开暂停就显示按钮！】✅✅✅
         if (followCameraButton != null)
         {
             followCameraButton.ShowButton();
@@ -643,8 +724,6 @@ public class UIManager : MonoBehaviour
                     b3.localScale = Vector3.zero;
                     b3.DOKill();
                     b3.DOScale(Vector3.one, 0.25f).SetEase(Ease.OutBack).SetUpdate(true);
-
-                    
                 }).SetUpdate(true);
             }
             if (pauseQuitButton != null)
@@ -663,20 +742,33 @@ public class UIManager : MonoBehaviour
         isPaused = true;
     }
 
-    // ====================== 【屏幕暂停按钮点击事件】 ======================
-    private void OnScreenPauseButtonClicked()
+    public void HidePauseMenu()
     {
-        if (isPaused)
-        {
-            HidePauseMenu();
-        }
-        else
-        {
-            ShowPauseMenu();
-        }
-    }
-    // ====================================================================
+        if (pausePanel == null) return;
+        PlayButtonSound();
 
+        Time.timeScale = 1f;
+
+        var t = pausePanel.transform;
+        t.DOKill();
+        t.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InBack).SetUpdate(true).OnComplete(() =>
+        {
+            pausePanel.SetActive(false);
+        });
+
+        if (isPaused && followCameraButton != null)
+        {
+            followCameraButton.HideButton();
+        }
+
+        if (pauseResumeButton != null) pauseResumeButton.gameObject.SetActive(false);
+        if (pauseQuitButton != null) pauseQuitButton.gameObject.SetActive(false);
+        if (pauseRestartButton != null) pauseRestartButton.gameObject.SetActive(false);
+        isPaused = false;
+    }
+    #endregion
+
+    #region 开始菜单
     public void ShowStartMenu()
     {
         if (startPanel == null) return;
@@ -753,32 +845,19 @@ public class UIManager : MonoBehaviour
             StopTitleImageEffects();
         });
     }
+    #endregion
 
-    public void HidePauseMenu()
+    #region 按钮点击事件
+    private void OnScreenPauseButtonClicked()
     {
-        if (pausePanel == null) return;
-        PlayButtonSound();
-
-
-        Time.timeScale = 1f;
-
-        var t = pausePanel.transform;
-        t.DOKill();
-        t.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InBack).SetUpdate(true).OnComplete(() =>
+        if (isPaused)
         {
-            pausePanel.SetActive(false);
-        });
-
-        // ✅ 只在暂停时才隐藏按钮
-        if (isPaused && followCameraButton != null)
-        {
-            followCameraButton.HideButton();
+            HidePauseMenu();
         }
-
-        if (pauseResumeButton != null) pauseResumeButton.gameObject.SetActive(false);
-        if (pauseQuitButton != null) pauseQuitButton.gameObject.SetActive(false);
-        if (pauseRestartButton != null) pauseRestartButton.gameObject.SetActive(false);
-        isPaused = false;
+        else
+        {
+            ShowPauseMenu();
+        }
     }
 
     private void OnStartButtonPressed()
@@ -795,7 +874,6 @@ public class UIManager : MonoBehaviour
         {
             GameTimer.Instance.StartTimer();
         }
-
     }
 
     private void OnQuitButtonPressed()
@@ -816,29 +894,68 @@ public class UIManager : MonoBehaviour
         });
     }
 
+    // ======================
+    // 重启按钮点击（核心逻辑）
+    // ======================
     private void OnRestartButtonPressed()
     {
+        var kb = UnityEngine.InputSystem.Keyboard.current;
+        if (kb == null) return;
+
+        bool shiftDown = kb.leftShiftKey.isPressed || kb.rightShiftKey.isPressed;
+
+        // ==========================================
+        // 按住 Shift → 速度存储模式
+        // ==========================================
+        if (shiftDown)
+        {
+            // 必须先点时间才生效
+            if (!_hasClickedTime) return;
+
+            // 构造速度
+            Vector2 finalVel = Vector2.up * _tempSpeedFromTime;
+
+            // 存入LevelManager
+            if (LevelManager.Instance != null)
+                LevelManager.Instance.storedRestartVelocity = finalVel;
+
+            // 显示箭头UI
+            if (restartButton != null)
+            {
+                var display = restartButton.GetComponent<RestartButtonSpeedDisplay>();
+                if (display != null)
+                    display.UpdateSpeedDisplay(finalVel);
+            }
+
+            // 清空状态
+            _hasClickedTime = false;
+            _tempSpeedFromTime = 0f;
+            return;
+        }
+
+        // ==========================================
+        // 没按 Shift → 正常重启
+        // ==========================================
         PlayButtonSound();
         if (restartButton != null)
         {
-            var t = restartButton.transform;
-            t.DOKill();
-            t.DOPunchScale(new Vector3(0.12f, 0.12f, 0), 0.2f, 8, 1f);
+            restartButton.transform.DOKill();
+            
         }
+
         DOVirtual.DelayedCall(0.18f, () =>
         {
-            PlayerPrefs.DeleteAll();
-            PlayerPrefs.Save();
+            
             if (LevelManager.Instance != null)
             {
+                LevelManager.Instance.SetRestartingToLevel0(true);
                 LevelManager.Instance.LoadSpecificLevel("level_0");
             }
             else
-            {
                 UnityEngine.SceneManagement.SceneManager.LoadScene("level_0");
-            }
         });
     }
+
 
     private void OnPauseRestartButtonPressed()
     {
@@ -864,6 +981,87 @@ public class UIManager : MonoBehaviour
             }
         }).SetUpdate(true);
     }
+
+    // ======================
+    // 总时间点击（存速度）
+    // ======================
+    private void OnThanksTimeClicked()
+    {
+        var kb = UnityEngine.InputSystem.Keyboard.current;
+        if (kb == null) return;
+
+        bool shiftDown = kb.leftShiftKey.isPressed || kb.rightShiftKey.isPressed;
+        if (!shiftDown) return;
+
+        // 只记录速度，不应用
+        _tempSpeedFromTime = _finalElapsedTime;
+        _hasClickedTime = true;
+    }
+    #endregion
+
+    #region 辅助功能
+    private void PlayButtonSound()
+    {
+        if (uiAudio != null && buttonClickSound != null)
+            uiAudio.PlayOneShot(buttonClickSound, clickVolume);
+    }
+
+    // UIManager.cs 中新增方法
+    public void SkipStartMenu()
+    {
+        isStartMenuVisible = false;
+        if (startPanel != null)
+        {
+            startPanel.SetActive(false);
+            StopBackgroundEffects();
+            StopTitleImageEffects();
+        }
+        // 同时启动游戏计时器（如果需要）
+        if (GameTimer.Instance != null)
+        {
+            GameTimer.Instance.StartTimer();
+        }
+    }
+
+    private void AssignGameTimeToRestart()
+    {
+        try
+        {
+            // 1. 获取总游戏时间（作为速度大小）
+            float totalTime = 0f;
+            if (GameTimer.Instance != null)
+                totalTime = GameTimer.Instance.GetElapsedSeconds();
+
+            // 2. 设置固定方向（你可以自己改：up/right/left/down）
+            Vector2 direction = Vector2.up;
+            Vector2 finalVelocity = direction * totalTime;
+
+            // 3. 把【时间作为速度】存入 LevelManager（重启用）
+            if (LevelManager.Instance != null)
+                LevelManager.Instance.storedRestartVelocity = finalVelocity;
+
+            // 4. 只更新 UI 显示（圆环+箭头+速度数值）
+            if (restartButton != null)
+            {
+                restartButton.GetComponent<RestartButtonSpeedDisplay>().UpdateSpeedDisplay(finalVelocity);
+            }
+
+            // 5. 按钮闪烁反馈（保留）
+            if (restartButton != null && restartButton.image != null)
+            {
+                restartButton.image.color = timeHighlightColor;
+                DOVirtual.DelayedCall(0.35f, () =>
+                {
+                    if (restartButton != null && restartButton.image != null)
+                        restartButton.image.color = restartButtonOrigColor;
+                });
+            }
+        }
+        catch { }
+    }
+
+
+
 
     private IEnumerator TypewriteText(TextMeshProUGUI textComp, string full, float duration)
     {
@@ -919,14 +1117,6 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    private DG.Tweening.Tween startBgScrollTween;
-    private DG.Tweening.Tween startBgBobTween;
-    private DG.Tweening.Tween titleImagePopTween;
-    private DG.Tweening.Tween titleImageBobTween;
-    private DG.Tweening.Tween titleImageRotateTween;
-    private Color startTitleImageOrigColor;
-    private Vector3 startTitleImageOrigScale;
-
     private void StartBackgroundEffects()
     {
         if (startBackgroundRaw == null) return;
@@ -976,4 +1166,5 @@ public class UIManager : MonoBehaviour
             startTitleImage.gameObject.SetActive(false);
         }
     }
+    #endregion
 }

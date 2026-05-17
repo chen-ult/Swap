@@ -170,7 +170,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -201,6 +201,28 @@ TextureImporter:
       bones: []
       spriteID: 051b437a089989dc0800000000000000
       internalID: -3631984321634193072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: xi_3
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 36
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93a98d46d2f5d7241bca8dcbcbf23520
+      internalID: -7475074848493131772
       vertices: []
       indices: 
       edges: []

@@ -384,7 +384,7 @@ MonoBehaviour:
   sfx_SlimeCloneSpawn: {fileID: 0}
   sfx_SmallBounce: {fileID: 8300000, guid: 0cc4c46f2f22762408d464b95091463f, type: 3}
   sfx_Footstep: {fileID: 8300000, guid: 6fdac00beca3e4247944cf796a949ca8, type: 3}
-  sfxVolume: 0.491
+  sfxVolume: 0.2
   stepInterval: 0.05
   movespeed: 4
   jumpforce: 10
@@ -401,6 +401,16 @@ MonoBehaviour:
   splitBounceForce: 8
   slimeClonePrefab: {fileID: 1391627740334693417, guid: 93e5f88f09cb01e4bb36aac8a62be58a, type: 3}
   splitScaleMultiplier: 0.5
+  attractSpeed: 10
+  attractRadius: 4
+  attractLineColor: {r: 1, g: 1, b: 1, a: 1}
+  attractLineWidth: 0.12
+  dashedCircleMaterial: {fileID: 2100000, guid: e3d3220f37f93c94ab341b49773afd15, type: 2}
+  breathScale: 0.15
+  breathSpeed: 2
+  rotateSpeed: 15
+  fadeDuration: 0.2
+  dashDensity: 8
 --- !u!114 &6512472777248395848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -417,7 +427,7 @@ MonoBehaviour:
   bulletTimeHintColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   selectedColor: {r: 0, g: 1, b: 1, a: 1}
   successColor: {r: 0, g: 1, b: 1, a: 1}
-  textOffset: {x: 0, y: 1.2, z: 0}
+  textOffset: {x: 0, y: 0.7, z: 0}
   textColor: {r: 1, g: 1, b: 1, a: 1}
   minShowSpeed: 0
 --- !u!58 &394605789421121371
