@@ -96,7 +96,8 @@ public class Player : Entity
     private LineRenderer attractCircleLine;
     private Transform circleTrans;   // 圈的独立Transform！！！
     private readonly int circlePoints = 180;
-    private Sequence circleAnimSeq;
+    private Tween circleBreathTween;
+    private Tween circleRotateTween;
     private Tween fadeTween;
     private bool wasAttracting = false;
     // ======================================================================
@@ -171,25 +172,26 @@ public class Player : Entity
         attractCircleLine.sortingOrder = 100;
 
         // 呼吸动画（独立，不进序列）
-        Tween breathTween = DOTween.To(() => circleTrans.localScale,
+        circleBreathTween = DOTween.To(() => circleTrans.localScale,
             s => circleTrans.localScale = s,
             Vector3.one * (1 + breathScale),
             breathSpeed)
+            .SetTarget(circleTrans)
+            .SetLink(gameObject)
             .SetLoops(-1, LoopType.Yoyo)
-            .SetAutoKill(false);
+            .SetAutoKill(false)
+            .Pause();
 
         // 旋转动画（独立，不进序列，保留虚线滚动）
-        Tween rotateTween = DOTween.To(() => circleTrans.rotation.eulerAngles.z,
+        circleRotateTween = DOTween.To(() => circleTrans.rotation.eulerAngles.z,
             r => circleTrans.rotation = Quaternion.Euler(0, 0, r),
             360,
             rotateSpeed)
+            .SetTarget(circleTrans)
+            .SetLink(gameObject)
+            .SetSpeedBased()
+            .SetEase(Ease.Linear)
             .SetLoops(-1, LoopType.Incremental)
-            .SetAutoKill(false);
-
-        // 序列只用来统一控制播放/暂停，不嵌套循环
-        circleAnimSeq = DOTween.Sequence()
-            .Append(breathTween)
-            .Join(rotateTween)
             .SetAutoKill(false)
             .Pause();
     }
@@ -213,14 +215,16 @@ public class Player : Entity
             if (isAttracting)
             {
                 attractCircleLine.enabled = true;
-                circleAnimSeq.Play();
+                circleBreathTween.Play();
+                circleRotateTween.Play();
 
                 fadeTween?.Kill();
                 fadeTween = attractCircleLine.material.DOFade(1, fadeDuration);
             }
             else
             {
-                circleAnimSeq.Pause();
+                circleBreathTween.Pause();
+                circleRotateTween.Pause();
 
                 fadeTween?.Kill();
                 fadeTween = attractCircleLine.material.DOFade(0, fadeDuration).OnComplete(() =>
@@ -317,7 +321,8 @@ public class Player : Entity
     protected virtual void OnDestroy()
     {
         fadeTween?.Kill();
-        circleAnimSeq?.Kill();
+        circleBreathTween?.Kill();
+        circleRotateTween?.Kill();
         circleTrans?.DOKill();
         transform.DOKill();
     }

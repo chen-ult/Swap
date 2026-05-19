@@ -282,12 +282,5 @@ public class LevelManager : MonoBehaviour
             PlayerPrefs.Save();
             Debug.Log("已删除所有存档数据！");
         }
-
-        // R键：重置星星 → 清空星星记录 + 重载场景（星星重新出现）
-        if (Keyboard.current != null && Keyboard.current.rKey.wasPressedThisFrame)
-        {
-            Debug.Log("R键：重置星星并重载场景");
-            LevelManager.Instance.RestartCurrentLevel();
-        }
     }
 }

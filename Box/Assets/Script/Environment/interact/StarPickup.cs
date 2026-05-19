@@ -65,7 +65,7 @@ public class StarPickup : MonoBehaviour
             StarSaveManager.Instance.AddStar();
             UIManager.Instance.CollectStar();
             if (collectEffect != null) Instantiate(collectEffect, transform.position, Quaternion.identity);
-            Destroy(gameObject);
+            gameObject.SetActive(false); // 改为隐藏而不是销毁，保证 R 键重置时能通过 FindObjectsInactive 找到它
         });
     }
 

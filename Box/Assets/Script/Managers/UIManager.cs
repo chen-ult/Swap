@@ -65,6 +65,9 @@ public class UIManager : MonoBehaviour
     [Header("结束面板文本")]
     public TextMeshProUGUI thanksTimeText;
     public TextMeshProUGUI thanksTitleText;
+    // 新增星星UI字段
+    public Image thanksStarIcon;       // Thanks面板的星星图标
+    public TextMeshProUGUI thanksStarText; // Thanks面板的星星数量文本
     public Button quitButton;
     public Button restartButton;
 
@@ -78,6 +81,11 @@ public class UIManager : MonoBehaviour
     public Vector3 charPunch = new Vector3(0.06f, 0.06f, 0);
     public Vector3 buttonPopScale = default(Vector3);
     public float buttonPopDuration = 0.35f;
+    // 新增星星动画配置
+    public Vector3 starFinalPunch = new Vector3(0.3f, 0.3f, 0); // 星星最终缩放冲击
+    public float starCountDuration = 1.0f; // 星星数量数字滚动时长
+    public float starIdleBobAmount = 5f;   // 星星Idle时上下浮动量
+    public float starIdlePeriod = 2f;      // 星星Idle动画周期
 
     [Header("UI 音效")]
     public AudioClip buttonClickSound;
@@ -264,18 +272,23 @@ public class UIManager : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnSceneLoaded;
         try
         {
-            DOTween.KillAll();
             if (titleGradientTweenRef != null) DOTween.Kill(titleGradientTweenRef);
             if (titleIdleTweenRef != null) DOTween.Kill(titleIdleTweenRef);
             if (titleBobTweenRef != null) DOTween.Kill(titleBobTweenRef);
             if (timeHighlightTweenRef != null) DOTween.Kill(timeHighlightTweenRef);
             if (timeBobTweenRef != null) DOTween.Kill(timeBobTweenRef);
             if (timeCountTweenRef != null) DOTween.Kill(timeCountTweenRef);
+            // 新增星星动画清理
+            if (starIdleTweenRef != null) DOTween.Kill(starIdleTweenRef);
+            if (starBobTweenRef != null) DOTween.Kill(starBobTweenRef);
 
             if (thanksTitleText != null) DOTween.Kill(thanksTitleText);
             if (thanksTimeText != null) DOTween.Kill(thanksTimeText);
             if (endImagePanel != null) DOTween.Kill(endImagePanel);
             if (thanksPanel != null) DOTween.Kill(thanksPanel);
+            // 新增星星UI清理
+            if (thanksStarIcon != null) DOTween.Kill(thanksStarIcon);
+            if (thanksStarText != null) DOTween.Kill(thanksStarText);
         }
         catch { }
     }
@@ -559,6 +572,20 @@ public class UIManager : MonoBehaviour
             if (thanksTimeText != null)
                 thanksTimeText.text = string.Format("Total Time: {0:F2}s", elapsedSeconds);
 
+            // ====================== 新增星星UI初始化 ======================
+            if (thanksStarIcon != null)
+            {
+                thanksStarIcon.gameObject.SetActive(true);
+                thanksStarIcon.transform.localScale = Vector3.zero; // 初始缩放为0
+            }
+            int finalStarCount = StarSaveManager.Instance.GetStarCount();
+            if (thanksStarText != null)
+            {
+                thanksStarText.text = "×0"; // 初始显示0
+                thanksStarText.transform.localScale = Vector3.zero; // 初始缩放为0
+            }
+            // =============================================================
+
             thanksPanel.SetActive(true);
             thanksPanel.transform.SetAsLastSibling();
 
@@ -619,6 +646,46 @@ public class UIManager : MonoBehaviour
                 }
                 catch { }
             }
+
+            // ====================== 新增星星UI动画 ======================
+            // 星星图标弹出动画
+            if (thanksStarIcon != null)
+            {
+                yield return new WaitForSeconds(0.1f); // 延迟一点弹出
+                thanksStarIcon.transform.DOKill();
+                thanksStarIcon.transform.DOScale(Vector3.one, buttonPopDuration)
+                    .SetEase(Ease.OutBack)
+                    .OnComplete(() =>
+                    {
+                        // 图标弹出后加冲击动画
+                        thanksStarIcon.transform.DOPunchScale(starFinalPunch, 0.45f, 8, 1f);
+                        // 启动星星Idle动画
+                        StartStarIdle();
+                    });
+            }
+
+            // 星星数量数字滚动+弹出动画
+            if (thanksStarText != null)
+            {
+                yield return new WaitForSeconds(0.05f); // 比图标稍晚一点
+                thanksStarText.transform.DOKill();
+                thanksStarText.transform.DOScale(Vector3.one, buttonPopDuration)
+                    .SetEase(Ease.OutBack);
+
+                // 数字滚动动画
+                float currentStar = 0f;
+                DOVirtual.Float(0f, finalStarCount, starCountDuration, v =>
+                {
+                    if (thanksStarText == null) return;
+                    currentStar = v;
+                    thanksStarText.text = $"×{Mathf.FloorToInt(currentStar)}";
+                }).OnComplete(() =>
+                {
+                    // 数字滚动完成后加冲击动画
+                    thanksStarText.transform.DOPunchScale(starFinalPunch, 0.45f, 8, 1f);
+                }).SetTarget(thanksStarText);
+            }
+            // =============================================================
 
             if (quitButton != null)
             {
@@ -1164,6 +1231,48 @@ public class UIManager : MonoBehaviour
             startTitleImage.transform.localRotation = Quaternion.identity;
             startTitleImage.color = startTitleImageOrigColor;
             startTitleImage.gameObject.SetActive(false);
+        }
+    }
+
+    private DG.Tweening.Tween starIdleTweenRef;
+    private DG.Tweening.Tween starBobTweenRef;
+
+    private void StartStarIdle()
+    {
+        if (thanksStarIcon == null) return;
+
+        // 星星图标缩放Idle动画
+        thanksStarIcon.transform.DOKill();
+        float baseScale = thanksStarIcon.transform.localScale.x;
+        Vector3 upScale = new Vector3(baseScale * titleIdleScale, baseScale * titleIdleScale, 1f);
+        starIdleTweenRef = thanksStarIcon.transform.DOScale(upScale, starIdlePeriod * 0.5f)
+            .SetEase(Ease.InOutSine)
+            .SetLoops(-1, LoopType.Yoyo)
+            .SetTarget(thanksStarIcon);
+
+        // 星星图标上下浮动Idle动画
+        var rt = thanksStarIcon.GetComponent<RectTransform>();
+        if (rt != null)
+        {
+            rt.DOKill();
+            starBobTweenRef = rt.DOLocalMoveY(rt.localPosition.y + starIdleBobAmount, starIdlePeriod * 0.5f)
+                .SetLoops(-1, LoopType.Yoyo)
+                .SetEase(Ease.InOutSine)
+                .SetTarget(thanksStarIcon);
+        }
+
+        // 星星数量文本也加浮动（可选）
+        if (thanksStarText != null)
+        {
+            var starTextRt = thanksStarText.GetComponent<RectTransform>();
+            if (starTextRt != null)
+            {
+                starTextRt.DOKill();
+                starTextRt.DOLocalMoveY(starTextRt.localPosition.y + starIdleBobAmount, starIdlePeriod * 0.5f)
+                    .SetLoops(-1, LoopType.Yoyo)
+                    .SetEase(Ease.InOutSine)
+                    .SetTarget(thanksStarText);
+            }
         }
     }
     #endregion
